@@ -1,582 +1,737 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>Farewell Invitation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta property="og:site_name" content="Farewell Invitation" />
-  <meta property="og:title" content="Farewell Invitation" />
-  <meta property="og:image" content="https://dhruvang-vidhi.ga/images/couple.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:updated_time" content="1546232947" />
-
-  <link rel="shortcut icon" href="images/favicon.ico" />
-
-  <!-- External CSS Libraries -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
-  <link href="https://fonts.googleapis.com/css?family=Charm|Open+Sans:400,700" rel="stylesheet" />
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-  <!-- Internal CSS -->
-  <style>
-    /* Dark theme background and text */
-    *, *:before,
-    *:after {
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-    }
-
-    body {
-      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-      font: 14px/20px 'Charm', cursive;
-      margin-top: 30px;
-      color: #f0d67b;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    a,
-    a:hover,
-    a:visited {
-      color: #f0d67b;
-      text-decoration: none;
-    }
-
-    *:focus {
-      outline: none;
-    }
-
-    b {
-      font-weight: 700;
-    }
-
-    canvas {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    .overlay {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(18, 18, 18, 0.95);
-      z-index: 10000;
-      top: 0;
-      color: #f0d67b;
-      font-family: 'Open Sans', sans-serif;
-      text-align: center;
-    }
-
-    .info {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-weight: 700;
-      letter-spacing: 1px;
-      font-size: 1.25rem;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    .info img {
-      margin: 30px 0;
-      filter: brightness(0) invert(1);
-    }
-
-    .info p {
-      font-size: 14px;
-      font-weight: 300;
-    }
-
-    .slide-container {
-      margin: auto;
-      width: 600px;
-      text-align: center;
-      max-width: 100%;
-      position: relative;
-      z-index: 10;
-    }
-
-    .wrapper {
-      padding: 40px 0;
-      outline: none;
-    }
-
-    .clash-card {
-      background: #222;
-      width: 300px;
-      display: inline-block;
-      margin: auto;
-      border-radius: 19px;
-      position: relative;
-      text-align: center;
-      box-shadow: 0 0 20px 3px rgba(240, 214, 123, 0.6);
-      color: #f0d67b;
-      font-family: 'Open Sans', sans-serif;
-      user-select: none;
-    }
-
-    .barbarian {
-      height: 500px;
-      background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 46%, #1a1a1a 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .leaf {
-      background-image: url("images/leaf.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: -20px;
-      opacity: 0.15;
-      filter: brightness(0.8) saturate(0.5);
-      pointer-events: none;
-    }
-
-    .letter-box {
-      position: absolute;
-      top: 30%;
-      width: 100%;
-      font-size: 20px;
-      letter-spacing: 0.5px;
-      padding: 0 20px;
-    }
-
-    .invitee {
-      margin-bottom: 25px;
-      font-size: 14px;
-      margin-top: 20px;
-      font-weight: 600;
-    }
-
-    span.personName {
-      font-size: 22px;
-      font-weight: 700;
-      color: #f0d67b;
-      text-shadow: 0 0 5px #f0d67b;
-    }
-
-    .inviters {
-      font-size: 26px;
-      padding: 20px 0;
-      line-height: 30px;
-      font-weight: 700;
-      text-shadow: 0 0 8px #f0d67b;
-    }
-
-    .wrap-box {
-      padding: 10px 0 20px 0;
-    }
-
-    .invitation {
-      font-weight: 400;
-      font-size: 18px;
-      letter-spacing: 0.6px;
-      line-height: 24px;
-    }
-
-    .label-box,
-    .label-box:hover,
-    .label-box:visited {
-      background-color: #f0d67b;
-      color: #1a1a1a;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 10px;
-      padding: 8px 15px;
-      letter-spacing: 1px;
-      display: inline-block;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .label-box:hover {
-      background-color: #d4b94a;
-    }
-
-    sup {
-      text-transform: lowercase;
-      font-size: 12px;
-      top: -5px;
-      position: relative;
-    }
-
-    .timeline:before {
-      content: '';
-      height: 100%;
-      width: 2px;
-      background-color: #f0d67b;
-      display: block;
-      position: absolute;
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%);
-      border-radius: 1px;
-    }
-
-    .timeline {
-      font-family: 'Open Sans', sans-serif;
-      position: relative;
-      margin-top: 20px;
-    }
-
-    .timeline li {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .timeline li>div {
-      width: 50%;
-    }
-
-    .timeline li .left {
-      text-align: right;
-      padding-right: 10px;
-    }
-
-    .timeline li .right {
-      text-align: left;
-      padding-left: 10px;
-    }
-
-    .timeline li .icon {
-      padding: 0 5px;
-    }
-
-    .timeline li .icon i {
-      display: unset;
-      padding: 10px;
-      color: #f0d67b;
-      font-size: 2em;
-      filter: drop-shadow(0 0 2px #f0d67b);
-    }
-
-    .timeline li .left.icon i {
-      float: right;
-    }
-
-    .timeline li .right.icon i {
-      float: left;
-    }
-
-    .timeline li .text {
-      font-size: 14px;
-      line-height: 20px;
-      padding: 0 15px;
-      font-weight: 600;
-      text-shadow: 0 0 3px #f0d67b;
-    }
-
-    .timeline li .text .timeline-title small {
-      font-size: 10px;
-    }
-
-    .heart i,
-    .i-heart i {
-      color: #f0d67b;
-      font-size: 1.2em;
-      position: relative;
-      top: 5px;
-      left: 1px;
-      filter: drop-shadow(0 0 2px #f0d67b);
-    }
-
-    .i-heart i {
-      transform: rotate(180deg);
-      top: -2px;
-    }
-
-    button.nextBtn,
-    button.prevBtn {
-      z-index: 99;
-      font-family: 'Charm', cursive;
-      color: #f0d67b;
-      position: absolute;
-      bottom: 0;
-      background-color: transparent;
-      border: none;
-      margin: 15px;
-      font-size: 16px;
-      padding: 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      user-select: none;
-      filter: drop-shadow(0 0 3px #f0d67b);
-      transition: color 0.3s ease;
-    }
-
-    button.nextBtn:hover,
-    button.prevBtn:hover {
-      color: #d4b94a;
-    }
-
-    button.nextBtn i,
-    button.prevBtn i {
-      margin: 0 5px;
-      font-size: 1em;
-    }
-
-    button.nextBtn {
-      right: 0;
-    }
-
-    button.prevBtn {
-      left: 0;
-    }
-
-    .address,
-    .call {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 15px;
-      line-height: 20px;
-      font-weight: 600;
-      text-shadow: 0 0 3px #f0d67b;
-    }
-
-    .farewell-quote {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 18px;
-      line-height: 28px;
-      font-style: italic;
-      padding: 20px;
-      font-weight: 600;
-      text-shadow: 0 0 5px #f0d67b;
-    }
-
-    /* Name input section */
-    .name-input-section {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 100;
-      text-align: center;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    .name-input-section input {
-      padding: 12px 15px;
-      border: 2px solid #f0d67b;
-      border-radius: 5px;
-      background-color: #222;
-      color: #f0d67b;
-      font-size: 16px;
-      margin-bottom: 15px;
-      width: 100%;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 8px #f0d67b;
-      transition: border-color 0.3s ease;
-    }
-
-    .name-input-section input::placeholder {
-      color: rgba(240, 214, 123, 0.6);
-    }
-
-    .name-input-section input:focus {
-      border-color: #d4b94a;
-      outline: none;
-      box-shadow: 0 0 12px #d4b94a;
-    }
-
-    .name-input-section button {
-      background-color: #f0d67b;
-      color: #1a1a1a;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      font-weight: 700;
-      width: 100%;
-      box-shadow: 0 0 8px #f0d67b;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-
-    .name-input-section button:hover {
-      background-color: #d4b94a;
-    }
-
-    .slide-container.hidden {
-      display: none;
-    }
-
-    .download-btn {
-      margin-top: 20px;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 0 8px #f0d67b;
-      transition: background-color 0.3s ease;
-    }
-
-    .download-btn:hover {
-      background-color: #d4b94a;
-    }
-
-    /* Icons inside buttons and links */
-    .label-box i,
-    .download-btn i {
-      margin-right: 8px;
-    }
-
-    #snackbar {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 12px;
-      visibility: hidden;
-      min-width: 250px;
-      margin-left: -125px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      border-radius: 2px;
-      padding: 16px;
-      position: fixed;
-      z-index: 100000;
-      left: 50%;
-      bottom: 30px;
-    }
-
-    #snackbar.show {
-      visibility: visible;
-      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    @-webkit-keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @-webkit-keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
-
-    @keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <canvas></canvas>
-  <div id="overlay" class="overlay">
-    <div class="info">
-      <div class="head">Farewell Invitation</div>
-      <img src="images/couple.svg" alt="farewell" width="100" />
-      <p>Loading...</p>
-    </div>
-  </div>
-
-  <div id="nameInputSection" class="name-input-section">
-    <input type="text" id="userName" placeholder="Enter your name" autocomplete="off" />
-    <button id="generateInvitation">Generate Invitation</button>
-  </div>
-
-  <div class="slide-container hidden" aria-label="Farewell invitation slides">
-    <div class="wrapper" role="group" aria-roledescription="slide" aria-label="Invitation greeting">
-      <div class="clash-card barbarian">
-        <div class="leaf"></div>
-        <div class="letter-box">
-          <div class="invitee">Dear, <span class="personName"></span></div>
-          <div class="invitation">You are cordially invited to a farewell gathering for</div>
-          <div class="inviters">Dhruvang<br />&<br />Vidhi</div>
-          <div class="invitation">As they embark on a new journey!</div>
-        </div>
-        <button class="nextBtn" aria-label="Next slide">Next <i class="fas fa-chevron-right"></i></button>
+<html lang="en" >
+   <head>
+      <link rel="shortcut icon" href="favicon.png" type="image/png"> 
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+     
+      <title>Farewell Celebration</title>
+
+      <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+      <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Dancing+Script&amp;display=swap'>
+      <!-- <link rel="stylesheet" href="style.css"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+         @-webkit-keyframes fall {
+	0% {
+		opacity: 0.9;
+		top: 0
+	}
+	100% {
+		opacity: 0.2;
+		top: 100%
+	}
+}
+
+@keyframes fall {
+	0% {
+		opacity: 0.9;
+		top: 0
+	}
+	100% {
+		opacity: 0.2;
+		top: 100%
+	}
+}
+
+@-webkit-keyframes blow-soft-left {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: -50%
+	}
+}
+
+@keyframes blow-soft-left {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: -50%
+	}
+}
+
+@-webkit-keyframes blow-medium-left {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: -100%
+	}
+}
+
+@keyframes blow-medium-left {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: -100%
+	}
+}
+
+@-webkit-keyframes blow-soft-right {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: 50%
+	}
+}
+
+@keyframes blow-soft-right {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: 50%
+	}
+}
+
+@-webkit-keyframes blow-medium-right {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: 100%
+	}
+}
+
+@keyframes blow-medium-right {
+	0% {
+		margin-left: 0
+	}
+	100% {
+		margin-left: 100%
+	}
+}
+
+@-webkit-keyframes sway-0 {
+	0% {
+		-webkit-transform: rotate(-5deg)
+	}
+	40% {
+		-webkit-transform: rotate(28deg)
+	}
+	100% {
+		-webkit-transform: rotate(3deg)
+	}
+}
+
+@keyframes sway-0 {
+	0% {
+		-ms-transform: rotate(-5deg);
+		transform: rotate(-5deg)
+	}
+	40% {
+		-ms-transform: rotate(28deg);
+		transform: rotate(28deg)
+	}
+	100% {
+		-ms-transform: rotate(3deg);
+		transform: rotate(3deg)
+	}
+}
+
+@-webkit-keyframes sway-1 {
+	0% {
+		-webkit-transform: rotate(10deg)
+	}
+	40% {
+		-webkit-transform: rotate(43deg)
+	}
+	100% {
+		-webkit-transform: rotate(15deg)
+	}
+}
+
+@keyframes sway-1 {
+	0% {
+		-ms-transform: rotate(10deg);
+		transform: rotate(10deg)
+	}
+	40% {
+		-ms-transform: rotate(43deg);
+		transform: rotate(43deg)
+	}
+	100% {
+		-ms-transform: rotate(15deg);
+		transform: rotate(15deg)
+	}
+}
+
+@-webkit-keyframes sway-2 {
+	0% {
+		-webkit-transform: rotate(15deg)
+	}
+	40% {
+		-webkit-transform: rotate(56deg)
+	}
+	100% {
+		-webkit-transform: rotate(22deg)
+	}
+}
+
+@keyframes sway-2 {
+	0% {
+		-ms-transform: rotate(15deg);
+		transform: rotate(15deg)
+	}
+	40% {
+		-ms-transform: rotate(56deg);
+		transform: rotate(56deg)
+	}
+	100% {
+		-ms-transform: rotate(22deg);
+		transform: rotate(22deg)
+	}
+}
+
+@-webkit-keyframes sway-3 {
+	0% {
+		-webkit-transform: rotate(25deg)
+	}
+	40% {
+		-webkit-transform: rotate(74deg)
+	}
+	100% {
+		-webkit-transform: rotate(37deg)
+	}
+}
+
+@keyframes sway-3 {
+	0% {
+		-ms-transform: rotate(25deg);
+		transform: rotate(25deg)
+	}
+	40% {
+		-ms-transform: rotate(74deg);
+		transform: rotate(74deg)
+	}
+	100% {
+		-ms-transform: rotate(37deg);
+		transform: rotate(37deg)
+	}
+}
+
+@-webkit-keyframes sway-4 {
+	0% {
+		-webkit-transform: rotate(40deg)
+	}
+	40% {
+		-webkit-transform: rotate(68deg)
+	}
+	100% {
+		-webkit-transform: rotate(25deg)
+	}
+}
+
+@keyframes sway-4 {
+	0% {
+		-ms-transform: rotate(40deg);
+		transform: rotate(40deg)
+	}
+	40% {
+		-ms-transform: rotate(68deg);
+		transform: rotate(68deg)
+	}
+	100% {
+		-ms-transform: rotate(25deg);
+		transform: rotate(25deg)
+	}
+}
+
+@-webkit-keyframes sway-5 {
+	0% {
+		-webkit-transform: rotate(50deg)
+	}
+	40% {
+		-webkit-transform: rotate(78deg)
+	}
+	100% {
+		-webkit-transform: rotate(40deg)
+	}
+}
+
+@keyframes sway-5 {
+	0% {
+		-ms-transform: rotate(50deg);
+		transform: rotate(50deg)
+	}
+	40% {
+		-ms-transform: rotate(78deg);
+		transform: rotate(78deg)
+	}
+	100% {
+		-ms-transform: rotate(40deg);
+		transform: rotate(40deg)
+	}
+}
+
+@-webkit-keyframes sway-6 {
+	0% {
+		-webkit-transform: rotate(65deg)
+	}
+	40% {
+		-webkit-transform: rotate(92deg)
+	}
+	100% {
+		-webkit-transform: rotate(58deg)
+	}
+}
+
+@keyframes sway-6 {
+	0% {
+		-ms-transform: rotate(65deg);
+		transform: rotate(65deg)
+	}
+	40% {
+		-ms-transform: rotate(92deg);
+		transform: rotate(92deg)
+	}
+	100% {
+		-ms-transform: rotate(58deg);
+		transform: rotate(58deg)
+	}
+}
+
+@-webkit-keyframes sway-7 {
+	0% {
+		-webkit-transform: rotate(72deg)
+	}
+	40% {
+		-webkit-transform: rotate(118deg)
+	}
+	100% {
+		-webkit-transform: rotate(68deg)
+	}
+}
+
+@keyframes sway-7 {
+	0% {
+		-ms-transform: rotate(72deg);
+		transform: rotate(72deg)
+	}
+	40% {
+		-ms-transform: rotate(118deg);
+		transform: rotate(118deg)
+	}
+	100% {
+		-ms-transform: rotate(68deg);
+		transform: rotate(68deg)
+	}
+}
+
+@-webkit-keyframes sway-8 {
+	0% {
+		-webkit-transform: rotate(94deg)
+	}
+	40% {
+		-webkit-transform: rotate(136deg)
+	}
+	100% {
+		-webkit-transform: rotate(82deg)
+	}
+}
+
+@keyframes sway-8 {
+	0% {
+		-ms-transform: rotate(94deg);
+		transform: rotate(94deg)
+	}
+	40% {
+		-ms-transform: rotate(136deg);
+		transform: rotate(136deg)
+	}
+	100% {
+		-ms-transform: rotate(82deg);
+		transform: rotate(82deg)
+	}
+}
+
+.sakura {
+	/* background: -webkit-linear-gradient(120deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));*/
+	background: red;
+	pointer-events: none;
+	position: absolute
+}
+
+.sakura {
+	background: #674ea7;
+}
+
+
+/*******************************/
+
+body {
+	font-family: Arial, Helvetica, Sans-serif;
+	background-color: #000000;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+@media (max-width:900px) {
+	img {
+		max-width: 30%;
+	}
+}
+
+.top-right-decoration {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+}
+
+.top-left-decoration {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+}
+
+.title h1 {
+	font-family: 'Dancing Script', cursive;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 60px;
+	margin: 32px 0;
+	color: #674ea7;
+}
+
+.title h2 {
+	font-family: 'Dancing Script', cursive;
+	font-weight: bold;
+	font-style: normal;
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	color: #e25c67;
+	line-height: 1;
+}
+
+.dance-med {
+	font-family: 'Dancing Script', cursive;
+	font-weight: bolder;
+	font-style: normal;
+	font-size: 32px;
+	color: #674ea7;
+	margin: 16px;
+	text-align: center;
+}
+
+.title h3 {
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-size: 24px;
+	color: #674ea7;
+	margin-top: 5px;
+}
+
+.title p {
+	color: #564861;
+	margin: 30px 0 20px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-size: 16px;
+}
+
+.wrap {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	/* padding: 20px; */
+	text-align: center;
+	/* min-height:100%; */
+}
+
+
+/** **/
+
+* {
+	/* margin: 0;
+    padding: 0; */
+	font-family: 'Arvo', serif;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* height: 100vh;
+    width: 100%; */
+	flex-direction: column;
+}
+
+.title {
+	margin-bottom: 40px;
+}
+
+#time {
+	width: auto;
+	height: auto;
+	padding: 20px;
+	background-color: #eee;
+	border-radius: 20px;
+	font-size: 16px;
+}
+
+.venue {
+	width: auto;
+	height: auto;
+	background-color: #674ea7;
+	border-radius: 16px;
+	text-align: center;
+	color: #fff;
+	padding: 8px;
+	margin-right: 8px;
+}
+
+.venue a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.block {
+	width: 180px;
+	height: 160px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #fff;
+}
+
+.days {
+	background: linear-gradient(90deg, #0408ff, #00f5c0);
+}
+
+.hours {
+	background: linear-gradient(90deg, #ffffff, #000000);
+}
+
+.minutes {
+	background: linear-gradient(90deg, #ffffff, #000000);
+}
+
+.seconds {
+	background: linear-gradient(90deg, #b700ff, #1eff00);
+}
+
+.date {
+	color: #874562;
+	font-weight: 900;
+}
+
+.place {
+	color: #874562;
+	font-weight: 900;
+}
+
+.footer {
+	color: #564861;
+	text-align: center;
+	font-size: 16px;
+	margin: 24px;
+}
+
+.phone {
+	color: #874562
+}
+
+.end-msg {
+	width: auto;
+	height: auto;
+	padding: 12px;
+	background: linear-gradient(90deg, #b33a46, #9b313c);
+	border-radius: 20px;
+	font-size: 14px;
+	color: #fff;
+	font-size: 24px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.happiness {
+	color: #874562;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 24px;
+}
+
+.twitter {
+	color: #874562;
+}
+
+.music {
+	display: none;
+}
+
+.actions {
+	display: flex;
+	font-size: 12px;
+	letter-spacing: 0pt;
+}
+         </style>
+   </head>
+   <body>
+      <!-- partial:index.partial.html -->
+      <div class="sakura-falling"></div>
+      <img src="https://i.imgur.com/dGOOfnA.png" alt="image-top-right" class="top-right-decoration">
+      <img src="https://i.imgur.com/t6ffnbn.png" alt="image-top-left" class="top-left-decoration"> 
+      <section id="media"></section>
+      <div class="wrap">
+         <div class="title">
+            <h1>Farewell</h1>
+            <!-- <h2>&</h2>
+            <h1>Gagan</h1> -->
+            <h3>Celebration</h3>
+            <p>
+               on <span class="date">29 November 2020</span></29>, At <span class="place">Ashirwad Garden</span> Ratu, Ranchi                
+            </p>
+         </div>
       </div>
-    </div>
-    <div class="wrapper" role="group" aria-roledescription="slide" aria-label="Event schedule">
-      <div class="clash-card barbarian">
-        <button class="prevBtn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i> Prev</button>
-        <div class="leaf"></div>
-        <div class="letter-box">
-          <div class="wrap-box">
-            <span class="label-box">Date: January 26<sup>th</sup>, 2019</span>
-          </div>
-          <div class="wrap-box">
-            <i class="heart"><i class="fas fa-heart"></i></i>
-            <ul class="timeline">
-              <li>
-                <div class="left icon"><i class="fas fa-glass-cheers fa-2x" aria-hidden="true"></i></div>
-                <div class="right text">
-                  <div class="timeline-time">6:00 pm</div>
-                  <div class="timeline-title">Gathering & Refreshments</div>
-                </div>
-              </li>
-              <li>
-                <div class="left text">
-                  <div class="timeline-time">7:00 pm</div>
-                  <div class="timeline-title">Speeches & Memories</div>
-                </div>
-                <div class="right icon"><i class="fas fa-microphone fa-2x" aria-hidden="true"></i></div>
-              </li>
-              <li>
-                <div class="left icon"><i class="fas fa-utensils fa-2x" aria-hidden="true"></i></div>
-                <div class="right text">
-                  <div class="timeline-time">8:00 pm</div>
-                  <div class="timeline-title">Dinner & Socializing</div>
-                </div>
-              </li>
-            </ul>
-            <i class="i-heart"><i class="fas fa-heart"></i></i>
-          </div>
-        </div>
-        <button class="nextBtn" aria-label="Next slide">Next <i class="fas fa-chevron-right"></i></button>
+      <div id="time"></div>
+      <p class="dance-med">
+         dinner & dancing to follow
+      </p>
+      <div class="actions">
+        <a href="https://goo.gl/maps/5z5xX2hTYzU8VGEJ9" target="_blank">
+          <div class="venue">SEE THE VENUE</div>
+        </a>
+        <a href="https://github.com/vinitshahdeo/vinitshahdeo/raw/master/docs/Sonali%20%26%20Gagan.pdf" download="Invitation | 23 Nov | Hope to see you there!">
+          <div class="venue">DOWNLOAD INVITATION CARD</div>
+        </a>
       </div>
+      <p class="footer">
+         Can't wait to make this farewell a memorable moment with you! <br>
+         Just a ping away for any queries: <a href="https://its-divyanshu.netlify.app/">content me</a>
+         <span></span>
+      </p>
+      <div class="music">
+        <audio src="./assets/mp3/song.mp3" id="my_audio" loop="loop"></audio> 
+      </div>
+      <p class="happiness">Join us in our happiness!<br><a href="https://twitter.com/Vinit_Shahdeo" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></p>
+      <!-- partial -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+      <script src='https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.min.js'></script>
+      <script>
+ 
+(function ($) {
+    "use strict";
+      $('.sakura-falling').sakura();
+})(jQuery);
+
+/**
+ *
+ * Despite so many new Bollywood and English song options, I prefered to use two-decade-old song, Din Shagna Da!
+ *
+ * Ever attended a North Indian Wedding? As soon as the DJ plays Din Shagna Da song, it means that the much-awaited moment is here
+ * and the bride is all set to put her first foot forward to the wedding venue under a breathtaking phoolon ki chaadar.
+ * Let's keep the sky-high status of this song untouched!
+ *
+ * When the website is backed up with a soul-stirring track, the feeling becomes absolutely surreal. 
+ * Choose a heart-touching track! 🎵 ❤️
+ *
+ * Listen here: https://youtu.be/X0MDALpV29s
+ *
+ */
+$(document).on('click', function(){
+    document.getElementById("my_audio").play();
+    console.log('Farewell me zaroor aana');
+});
+
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 29, 2025 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("time").innerHTML = "<div class='container'><div class='days block'>"+ days + "<br>Days</div>" + "<div class='hours block'>" + hours + "<br>Hours</div>" + "<div class='minutes block'>" + minutes + "<br>Minutes</div>" + "<div class='seconds block'>" + seconds + "<br>Seconds</div></div>";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("time").innerHTML = "Let's gather to ashare memories, laughter & good wishes.";
+    }
+}, 1000);
+
+// being a bit cool :p  
+var styles = [
+    'background: linear-gradient(#D33106, #571402)'
+    , 'border: 4px solid #d63912ff'
+    , 'color: white'
+    , 'display: block'
+    , 'text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3)'
+    , 'box-shadow: 0 2px 0 rgba(255, 255, 255, 0.4) inset, 0 5px 3px -5px rgba(0, 0, 0, 0.5), 0 -13px 5px -10px rgba(255, 255, 255, 0.4) inset'
+    , 'line-height: 40px'
+    , 'text-align: center'
+    , 'font-weight: bold'
+    , 'font-size: 32px'
+].join(';');
+
+var styles1 = [
+    'color: #FF6C37'
+    , 'display: block'
+    , 'text-shadow: 0 2px 0 rgba(0, 0, 0, 1)'
+    , 'line-height: 40px'
+    , 'font-weight: bold'
+    , 'font-size: 32px'
+].join(';');
+
+var styles2 = [
+    'color: teal'
+    , 'display: block'
+    , 'text-shadow: 0 2px 0 rgba(0, 0, 0, 1)'
+    , 'line-height: 40px'
+    , 'font-weight: bold'
+    , 'font-size: 32px'
+].join(';');
+
+
+
+console.log('%cYour presence is requested!%c\n\nRegards: Vinit Shahdeo', styles1, styles2);
+
+console.log(
+    `%cShaadi me zaroor aana!\n\n`,
+    'color: yellow; background:tomato; font-size: 24pt; font-weight: bold',
+)
+
+      </script>
+   </body>
+
+
+</html>
