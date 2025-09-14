@@ -16,14 +16,14 @@
             box-sizing: border-box;
         }
 
-        /* Loader Styles */
+        /* Loader Styles - Updated Dark Theme */
         .loader-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,37 +34,85 @@
         .loader {
             text-align: center;
             color: white;
+            position: relative;
         }
 
-        .spinner {
-            width: 80px;
-            height: 80px;
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top: 8px solid #fff;
+        /* New animated loader design */
+        .loader-animation {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin: 0 auto 30px;
+        }
+
+        .loader-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            border: 3px solid transparent;
+            border-top-color: #ffd700;
+            animation: rotate 2s linear infinite;
+        }
+
+        .loader-ring:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border-top-color: #ff6b6b;
+            animation-duration: 1.5s;
+            animation-direction: reverse;
+        }
+
+        .loader-ring:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            border-top-color: #4ecdc4;
+            animation-duration: 1s;
+        }
+
+        .loader-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #ffd700;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .loader-text {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 300;
             letter-spacing: 2px;
-            animation: pulse 2s ease-in-out infinite;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
         }
 
-        @keyframes spin {
+        @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
         }
 
-        /* Main Content */
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Main Content - Dark Theme */
         .main-content {
             opacity: 0;
             transition: opacity 0.5s ease-in;
@@ -72,19 +120,54 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Invitation Form Modal */
+        /* Audio Control Button */
+        .audio-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: #333;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-control:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        .audio-control.playing {
+            animation: soundWaves 2s ease-in-out infinite;
+        }
+
+        @keyframes soundWaves {
+            0%, 100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6), 0 0 0 10px rgba(255, 215, 0, 0.1), 0 0 0 20px rgba(255, 215, 0, 0.05); }
+        }
+
+        /* Invitation Form Modal - Dark Theme */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -100,15 +183,16 @@
         }
 
         .invitation-form {
-            background: white;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             text-align: center;
             max-width: 400px;
             width: 90%;
             transform: translateY(50px);
             transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .modal-overlay.active .invitation-form {
@@ -118,7 +202,7 @@
         .form-title {
             font-family: 'Dancing Script', cursive;
             font-size: 32px;
-            color: #667eea;
+            color: #ffd700;
             margin-bottom: 20px;
             font-weight: 700;
         }
@@ -127,21 +211,27 @@
             width: 100%;
             padding: 15px;
             margin: 10px 0;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #4a5568;
             border-radius: 10px;
             font-size: 16px;
             transition: border-color 0.3s ease;
             font-family: 'Poppins', sans-serif;
+            background: #2d3748;
+            color: white;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #ffd700;
+        }
+
+        .form-input::placeholder {
+            color: #a0aec0;
         }
 
         .form-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+            color: #333;
             border: none;
             padding: 15px 30px;
             border-radius: 10px;
@@ -157,7 +247,12 @@
             transform: translateY(-2px);
         }
 
-        /* Particle Animation */
+        .form-button.secondary {
+            background: #4a5568;
+            color: white;
+        }
+
+        /* Particle Animation - Dark Theme */
         .particles {
             position: fixed;
             top: 0;
@@ -172,7 +267,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 215, 0, 0.6);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -182,7 +277,7 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        /* Header Decorations */
+        /* Header Decorations - Dark Theme */
         .decoration {
             position: absolute;
             z-index: 2;
@@ -193,13 +288,14 @@
             right: 20px;
             width: 80px;
             height: 80px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 215, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #ffd700;
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         .top-left-decoration {
@@ -207,13 +303,14 @@
             left: 20px;
             width: 80px;
             height: 80px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 107, 107, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #ff6b6b;
+            border: 2px solid rgba(255, 107, 107, 0.3);
         }
 
         /* Main Container */
@@ -225,7 +322,7 @@
             z-index: 3;
         }
 
-        /* Title Section */
+        /* Title Section - Dark Theme */
         .title-section {
             text-align: center;
             margin: 80px 0 60px;
@@ -236,31 +333,34 @@
             font-family: 'Dancing Script', cursive;
             font-size: 4rem;
             font-weight: 700;
-            color: #fff;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             animation: glow 3s ease-in-out infinite alternate;
         }
 
         .sub-title {
             font-family: 'Dancing Script', cursive;
             font-size: 2.5rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: #e2e8f0;
             margin-bottom: 30px;
             font-weight: 600;
         }
 
         .event-details {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(45, 55, 72, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 25px;
             margin: 20px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .event-details p {
-            color: rgba(255, 255, 255, 0.95);
+            color: #e2e8f0;
             font-size: 18px;
             font-weight: 400;
             line-height: 1.6;
@@ -269,15 +369,15 @@
         .highlight {
             color: #ffd700;
             font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         @keyframes glow {
-            0% { text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2); }
-            100% { text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.4); }
+            0% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
         }
 
-        /* Countdown Timer */
+        /* New Countdown Timer Design */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -285,50 +385,120 @@
         }
 
         .countdown {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(45, 55, 72, 0.9) 0%, rgba(26, 32, 44, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #ffd700);
+            background-size: 400% 400%;
+            border-radius: 25px;
+            z-index: -1;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .countdown-title {
+            color: #ffd700;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
         }
 
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 600px;
+            gap: 25px;
+            max-width: 700px;
         }
 
         .countdown-item {
             text-align: center;
             color: white;
-            padding: 20px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease;
+            padding: 25px 15px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 107, 0.1));
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .countdown-item:hover::before {
+            left: 100%;
         }
 
         .countdown-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
         }
 
         .countdown-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .countdown-label {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
             opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: #e2e8f0;
         }
 
-        /* Action Buttons */
+        .countdown-separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ffd700;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        /* Action Buttons - Dark Theme */
         .actions-container {
             display: flex;
             justify-content: center;
@@ -338,13 +508,13 @@
         }
 
         .action-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(45, 55, 72, 0.8);
             backdrop-filter: blur(10px);
             color: white;
             text-decoration: none;
             padding: 15px 25px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.3);
             font-weight: 500;
             transition: all 0.3s ease;
             display: flex;
@@ -353,34 +523,36 @@
         }
 
         .action-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
         }
 
         .invitation-btn {
             background: linear-gradient(135deg, #ffd700, #ffa500);
             color: #333;
             font-weight: 600;
+            border-color: transparent;
         }
 
         .invitation-btn:hover {
             background: linear-gradient(135deg, #ffed4e, #ffb347);
         }
 
-        /* Footer */
+        /* Footer - Dark Theme */
         .footer {
             text-align: center;
             margin: 60px 0 40px;
             padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(45, 55, 72, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .footer-text {
-            color: rgba(255, 255, 255, 0.9);
+            color: #e2e8f0;
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 15px;
@@ -405,20 +577,53 @@
             display: inline-block;
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
             text-align: center;
             line-height: 40px;
             border-radius: 50%;
             margin: 0 10px;
             transition: all 0.3s ease;
             text-decoration: none;
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         .social-icon:hover {
             background: #ffd700;
             color: #333;
             transform: translateY(-3px);
+        }
+
+        /* Success message - Dark Theme */
+        .success-message {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+
+        /* Music note animation - Dark Theme */
+        .music-note {
+            position: fixed;
+            font-size: 20px;
+            color: rgba(255, 215, 0, 0.6);
+            pointer-events: none;
+            z-index: 2;
+            animation: musicFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes musicFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg); 
+                opacity: 1;
+            }
         }
 
         /* Mobile Responsive */
@@ -462,6 +667,14 @@
             .invitation-form {
                 padding: 30px 20px;
             }
+
+            .audio-control {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -490,54 +703,34 @@
                 font-size: 12px;
             }
         }
-
-        /* Success message */
-        .success-message {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-            display: none;
-        }
-
-        /* Music note animation */
-        .music-note {
-            position: fixed;
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.6);
-            pointer-events: none;
-            z-index: 2;
-            animation: musicFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes musicFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-                opacity: 0.6;
-            }
-            50% { 
-                transform: translateY(-30px) rotate(180deg); 
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Loader -->
     <div class="loader-container" id="loader">
         <div class="loader">
-            <div class="spinner"></div>
+            <div class="loader-animation">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-center">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
             <div class="loader-text">Loading Your Invitation...</div>
         </div>
     </div>
+
+    <!-- Audio Control Button -->
+    <button class="audio-control" id="audioControl">
+        <i class="fas fa-play" id="audioIcon"></i>
+    </button>
 
     <!-- Invitation Form Modal -->
     <div class="modal-overlay" id="invitationModal">
         <div class="invitation-form">
             <h2 class="form-title">Personal Invitation</h2>
-            <p style="color: #666; margin-bottom: 20px;">Enter your details to download your personalized invitation</p>
+            <p style="color: #a0aec0; margin-bottom: 20px;">Enter your details to download your personalized invitation</p>
             <input type="text" class="form-input" id="guestName" placeholder="Enter your full name" maxlength="50">
             <input type="text" class="form-input" id="guestCode" placeholder="Enter 4-digit code" maxlength="4" pattern="[0-9]{4}">
             <div class="success-message" id="successMessage">
@@ -545,7 +738,7 @@
             </div>
             <div style="margin-top: 20px;">
                 <button class="form-button" onclick="downloadInvitation()">Download Invitation</button>
-                <button class="form-button" onclick="closeModal()" style="background: #666;">Close</button>
+                <button class="form-button secondary" onclick="closeModal()">Close</button>
             </div>
         </div>
     </div>
@@ -581,6 +774,7 @@
             <!-- Countdown Timer -->
             <div class="countdown-container">
                 <div class="countdown">
+                    <div class="countdown-title">Time Until Celebration</div>
                     <div class="countdown-grid" id="countdown">
                         <!-- Countdown will be populated by JavaScript -->
                     </div>
@@ -620,14 +814,14 @@
                         <i class="fab fa-facebook"></i>
                     </a>
                 </div>
-                <p style="color: rgba(255,255,255,0.7); margin-top: 20px; font-size: 16px;">
+                <p style="color: #a0aec0; margin-top: 20px; font-size: 16px;">
                     Join us in our happiness! 💫
                 </p>
             </div>
         </div>
 
         <!-- Hidden audio element -->
-        <audio id="backgroundMusic" loop>
+        <audio id="backgroundMusic" loop preload="auto">
             <source src="https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/mp3/song.mp3" type="audio/mpeg">
         </audio>
     </div>
@@ -642,6 +836,10 @@
             // Add more guests as needed
         };
 
+        // Audio control variables
+        let audio = null;
+        let isPlaying = false;
+
         // Loader functionality
         window.addEventListener('load', function() {
             setTimeout(() => {
@@ -650,9 +848,52 @@
                     document.getElementById('loader').style.display = 'none';
                     document.getElementById('mainContent').style.opacity = '1';
                     startAnimations();
+                    initAudio();
                 }, 500);
             }, 2000);
         });
+
+        // Initialize audio
+        function initAudio() {
+            audio = document.getElementById('backgroundMusic');
+            const audioControl = document.getElementById('audioControl');
+            const audioIcon = document.getElementById('audioIcon');
+
+            // Auto-play attempt (might be blocked by browser)
+            audio.play().then(() => {
+                isPlaying = true;
+                audioIcon.className = 'fas fa-pause';
+                audioControl.classList.add('playing');
+            }).catch(() => {
+                // Auto-play blocked, user interaction required
+                console.log('Auto-play blocked. User interaction required.');
+            });
+
+            // Audio control button
+            audioControl.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                    audioIcon.className = 'fas fa-play';
+                    audioControl.classList.remove('playing');
+                    isPlaying = false;
+                } else {
+                    audio.play().then(() => {
+                        audioIcon.className = 'fas fa-pause';
+                        audioControl.classList.add('playing');
+                        isPlaying = true;
+                    }).catch((error) => {
+                        console.log('Audio play failed:', error);
+                    });
+                }
+            });
+
+            // Handle audio ended event
+            audio.addEventListener('ended', function() {
+                audioIcon.className = 'fas fa-play';
+                audioControl.classList.remove('playing');
+                isPlaying = false;
+            });
+        }
 
         // Start animations after loader
         function startAnimations() {
@@ -709,19 +950,19 @@
                 
                 document.getElementById("countdown").innerHTML = `
                     <div class="countdown-item">
-                        <span class="countdown-number">${days}</span>
+                        <span class="countdown-number">${days.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Days</span>
                     </div>
                     <div class="countdown-item">
-                        <span class="countdown-number">${hours}</span>
+                        <span class="countdown-number">${hours.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Hours</span>
                     </div>
                     <div class="countdown-item">
-                        <span class="countdown-number">${minutes}</span>
+                        <span class="countdown-number">${minutes.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Minutes</span>
                     </div>
                     <div class="countdown-item">
-                        <span class="countdown-number">${seconds}</span>
+                        <span class="countdown-number">${seconds.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Seconds</span>
                     </div>
                 `;
@@ -729,7 +970,7 @@
                 if (distance < 0) {
                     clearInterval(timer);
                     document.getElementById("countdown").innerHTML = `
-                        <div style="text-align: center; color: white; font-size: 24px; padding: 20px;">
+                        <div style="text-align: center; color: #ffd700; font-size: 28px; padding: 40px; grid-column: 1 / -1;">
                             🎉 Let's gather to share memories, laughter & good wishes! 🎉
                         </div>
                     `;
@@ -797,32 +1038,38 @@
             canvas.width = 800;
             canvas.height = 1200;
             
-            // Background gradient
+            // Dark theme background gradient
             const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#667eea');
-            gradient.addColorStop(1, '#764ba2');
+            gradient.addColorStop(0, '#1a1a2e');
+            gradient.addColorStop(0.5, '#16213e');
+            gradient.addColorStop(1, '#0f3460');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             // Add decorative border
-            ctx.strokeStyle = '#fff';
+            ctx.strokeStyle = '#ffd700';
             ctx.lineWidth = 8;
             ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
             
+            // Inner border
+            ctx.strokeStyle = '#ff6b6b';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120);
+            
             // Title
-            ctx.fillStyle = '#fff';
+            ctx.fillStyle = '#ffd700';
             ctx.font = 'bold 48px Arial';
             ctx.textAlign = 'center';
             ctx.fillText('Farewell Celebration', canvas.width / 2, 150);
             
             // Guest name
             ctx.font = 'bold 36px Arial';
-            ctx.fillStyle = '#ffd700';
+            ctx.fillStyle = '#ff6b6b';
             ctx.fillText(`Dear ${name}`, canvas.width / 2, 220);
             
             // Event details
             ctx.font = '24px Arial';
-            ctx.fillStyle = '#fff';
+            ctx.fillStyle = '#e2e8f0';
             ctx.fillText('You are cordially invited to join us', canvas.width / 2, 300);
             ctx.fillText('29 November 2025', canvas.width / 2, 350);
             ctx.fillText('Ashirwad Garden, Ratu, Ranchi', canvas.width / 2, 390);
@@ -834,13 +1081,20 @@
             
             // Additional details
             ctx.font = '18px Arial';
-            ctx.fillStyle = '#fff';
+            ctx.fillStyle = '#e2e8f0';
             ctx.fillText('Dinner & Dancing to Follow', canvas.width / 2, 520);
             ctx.fillText('Dress Code: Semi-Formal', canvas.width / 2, 550);
             
+            // Decorative elements
+            ctx.fillStyle = '#ffd700';
+            ctx.font = '30px Arial';
+            ctx.fillText('✨ 💫 ✨', canvas.width / 2, 600);
+            
             // Footer
             ctx.font = '16px Arial';
-            ctx.fillText('Looking forward to celebrating with you!', canvas.width / 2, 650);
+            ctx.fillStyle = '#a0aec0';
+            ctx.fillText('Looking forward to celebrating with you!', canvas.width / 2, 700);
+            ctx.fillText('Can\'t wait to make memorable moments together', canvas.width / 2, 730);
             
             // Convert to blob and download
             canvas.toBlob(function(blob) {
@@ -856,14 +1110,6 @@
                 setTimeout(closeModal, 2000);
             });
         }
-
-        // Background music
-        document.addEventListener('click', function() {
-            const audio = document.getElementById('backgroundMusic');
-            if (audio.paused) {
-                audio.play().catch(e => console.log('Audio play failed:', e));
-            }
-        }, { once: true });
 
         // Input validation for guest code
         document.getElementById('guestCode').addEventListener('input', function(e) {
@@ -890,13 +1136,22 @@
             }
         });
 
+        // Handle visibility change for audio
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden && isPlaying) {
+                audio.pause();
+            } else if (!document.hidden && isPlaying) {
+                audio.play().catch(console.log);
+            }
+        });
+
         // Console messages
         console.log('%cYour presence is requested!%c\n\nRegards: Event Organizer', 
-            'color: #FF6C37; font-weight: bold; font-size: 24px;', 
-            'color: teal; font-weight: bold; font-size: 16px;');
+            'color: #ffd700; font-weight: bold; font-size: 24px;', 
+            'color: #4ecdc4; font-weight: bold; font-size: 16px;');
 
         console.log('%cFarewell me zaroor aana!', 
-            'color: yellow; background: tomato; font-size: 18pt; font-weight: bold; padding: 10px;');
+            'color: #ffd700; background: #1a1a2e; font-size: 18pt; font-weight: bold; padding: 10px;');
     </script>
 </body>
 </html>
