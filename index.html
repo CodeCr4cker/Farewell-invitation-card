@@ -1528,8 +1528,8 @@
         </div>
     </div>
 
-    <!-- Audio Control Button -->
-    <button class="audio-control" id="audioControl">
+    <!-- Audio Control Button (Initially hidden, will be removed by JS on first interaction) -->
+    <button class="audio-control" id="audioControl" style="display: none;">
         <i class="fas fa-play" id="audioIcon"></i>
     </button>
 
@@ -1628,7 +1628,7 @@
 
             <!-- Photo Album Section -->
             <div class="photo-album-section animate-on-scroll" id="photo-album">
-          <!--      <div class="album-lock-overlay" id="albumLockOverlay">
+                <div class="album-lock-overlay" id="albumLockOverlay">
                     <div class="lock-icon">
                         <i class="fas fa-lock"></i>
                     </div>
@@ -1644,18 +1644,18 @@
                 <div class="album-header">
                     <h2 class="album-title">Memory Lane</h2>
                     <p class="album-subtitle">Cherishing the moments we've shared together</p>
-                </div> -->
+                </div>
                 
                 <div class="photo-grid" id="photoGrid">
                     <!-- Photos will be populated by JavaScript -->
                 </div>
                 
-    <!--            <div class="album-controls">
+                <div class="album-controls">
                     <button class="album-btn" onclick="addMorePhotos()">
                         <i class="fas fa-plus"></i>
                         Load More Memories
                     </button>
-                </div> -->
+                </div>
             </div>
 
             <!-- Photo Modal/Lightbox -->
@@ -1832,7 +1832,13 @@
 
         // Photo Album Functions
         function initializePhotoAlbum() {
-            if (!albumUnlocked) return;
+            // Ensure the album header is visible when unlocked
+            const albumHeader = document.querySelector('.album-header');
+            if (albumHeader) albumHeader.style.display = 'block';
+
+            const albumControls = document.querySelector('.album-controls');
+            if (albumControls) albumControls.style.display = 'block';
+
             loadPhotos();
         }
 
@@ -1851,6 +1857,16 @@
             photoItems.forEach((item, index) => {
                 item.style.animationDelay = `${index * 0.1}s`;
             });
+
+            // Hide the "Load More Memories" button if all photos are displayed
+            const albumControls = document.querySelector('.album-controls');
+            if (albumControls) {
+                if (displayedPhotos >= photoAlbumData.length) {
+                    albumControls.style.display = 'none';
+                } else {
+                    albumControls.style.display = 'block';
+                }
+            }
         }
 
         function createPhotoElement(photo, index) {
@@ -1874,11 +1890,6 @@
             
             displayedPhotos = Math.min(displayedPhotos + 4, photoAlbumData.length);
             loadPhotos();
-            
-            // Hide the button if all photos are loaded
-            if (displayedPhotos >= photoAlbumData.length) {
-                document.querySelector('.album-controls').style.display = 'none';
-            }
         }
 
         function openPhotoModal(index) {
@@ -1959,6 +1970,7 @@
         // Audio control variables
         let audio = null;
         let isPlaying = false;
+        let audioInitialized = false; // New flag to track if audio has been initialized
 
         // Enhanced Animation Observer
         function setupScrollAnimations() {
@@ -1989,58 +2001,47 @@
                     document.getElementById('loader').style.display = 'none';
                     document.getElementById('mainContent').style.opacity = '1';
                     startAnimations();
-                    initAudio();
+                    // Audio initialization will now happen on first user interaction
                     setupScrollAnimations();
                 }, 500);
             }, 2000);
         });
 
-        // Initialize audio
-        function initAudio() {
+        // Initialize audio on first user interaction
+        function initAudioOnInteraction() {
+            if (audioInitialized) return; // Only run once
+
             audio = document.getElementById('backgroundMusic');
             const audioControl = document.getElementById('audioControl');
             const audioIcon = document.getElementById('audioIcon');
 
-            // Auto-play attempt (might be blocked by browser)
             audio.play().then(() => {
                 isPlaying = true;
-                audioIcon.className = 'fas fa-pause';
-                audioControl.classList.add('playing');
-            }).catch(() => {
-                console.log('Auto-play blocked. User interaction required.');
-            });
-
-            // Audio control button
-            audioControl.addEventListener('click', function() {
-                if (isPlaying) {
-                    audio.pause();
-                    audioIcon.className = 'fas fa-play';
-                    audioControl.classList.remove('playing');
-                    isPlaying = false;
-                } else {
-                    audio.play().then(() => {
-                        audioIcon.className = 'fas fa-pause';
-                        audioControl.classList.add('playing');
-                        isPlaying = true;
-                    }).catch((error) => {
-                        console.log('Audio play failed:', error);
-                    });
-                }
-            });
-
-            // Handle audio ended event
-            audio.addEventListener('ended', function() {
-                audioIcon.className = 'fas fa-play';
-                audioControl.classList.remove('playing');
-                isPlaying = false;
+                audioInitialized = true;
+                // Remove the audio control button after successful playback
+                if (audioControl) audioControl.remove();
+                createMusicNotes(); // Start music notes animation only when playing
+            }).catch((error) => {
+                console.log('Audio play failed on interaction:', error);
+                // If autoplay fails, show the button for manual control
+                if (audioControl) audioControl.style.display = 'flex';
             });
         }
+
+        // Attach a global click listener to trigger audio playback
+        document.addEventListener('click', initAudioOnInteraction, { once: true });
+        document.addEventListener('keydown', initAudioOnInteraction, { once: true });
+
 
         // Start animations after loader
         function startAnimations() {
             createParticles();
-            createMusicNotes();
             startCountdown();
+            // Hide album header and controls initially
+            const albumHeader = document.querySelector('.album-header');
+            if (albumHeader) albumHeader.style.display = 'none';
+            const albumControls = document.querySelector('.album-controls');
+            if (albumControls) albumControls.style.display = 'none';
         }
 
         // Create floating particles with enhanced animation
@@ -2332,10 +2333,12 @@
 
         // Handle visibility change for audio
         document.addEventListener('visibilitychange', function() {
-            if (document.hidden && isPlaying) {
-                audio.pause();
-            } else if (!document.hidden && isPlaying) {
-                audio.play().catch(console.log);
+            if (audio && isPlaying) { // Check if audio is initialized and playing
+                if (document.hidden) {
+                    audio.pause();
+                } else {
+                    audio.play().catch(console.log);
+                }
             }
         });
 
