@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>Farewell Celebration</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <style>
         * {
             margin: 0;
@@ -701,11 +701,6 @@
             animation: slideInFromLeft 2.2s ease-out;
         }
 
-        @keyframes slideInFromLeft {
-            0% { transform: translateX(-50px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-
         .action-btn {
             background: rgba(45, 55, 72, 0.8);
             backdrop-filter: blur(10px);
@@ -730,7 +725,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s ease;
         }
 
@@ -762,7 +757,7 @@
             background: linear-gradient(135deg, #ffed4e, #ffb347);
         }
 
-        /* Photo Album Section - Dark Theme with Enhanced Animation */
+        /* Photo Album Section */
         .photo-album-section {
             margin: 80px 0;
             padding: 40px 0;
@@ -785,6 +780,10 @@
             pointer-events: none;
         }
 
+        .photo-album-section.locked .album-container { /* Target album-container when section is locked */
+            display: none; /* Hide the entire album content */
+        }
+
         .photo-album-section::before {
             content: '';
             position: absolute;
@@ -799,175 +798,6 @@
         @keyframes shimmer {
             0% { left: -100%; }
             100% { left: 100%; }
-        }
-
-        .album-header {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .album-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
-            background-size: 200% 200%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease infinite, titleWave 3s ease-in-out infinite;
-            margin-bottom: 15px;
-        }
-
-        @keyframes titleWave {
-            0%, 100% { transform: translateY(0); }
-            25% { transform: translateY(-5px); }
-            75% { transform: translateY(5px); }
-        }
-
-        .album-subtitle {
-            color: #e2e8f0;
-            font-size: 18px;
-            font-weight: 300;
-            opacity: 0.9;
-            font-style: italic;
-            animation: subtitleFade 4s ease-in-out infinite;
-        }
-
-        @keyframes subtitleFade {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 0.6; }
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 0 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .photo-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            background: rgba(45, 55, 72, 0.8);
-            border: 2px solid rgba(255, 215, 0, 0.2);
-            aspect-ratio: 4/3;
-            animation: photoSlideUp 0.8s ease-out;
-        }
-
-        @keyframes photoSlideUp {
-            0% { transform: translateY(30px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        .photo-item:nth-child(1) { animation-delay: 0.1s; }
-        .photo-item:nth-child(2) { animation-delay: 0.2s; }
-        .photo-item:nth-child(3) { animation-delay: 0.3s; }
-        .photo-item:nth-child(4) { animation-delay: 0.4s; }
-        .photo-item:nth-child(5) { animation-delay: 0.5s; }
-        .photo-item:nth-child(6) { animation-delay: 0.6s; }
-
-        .photo-item:hover {
-            transform: translateY(-15px) scale(1.03) rotateY(5deg);
-            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.4);
-            border-color: #ffd700;
-            animation: photoHover 0.3s ease-out;
-        }
-
-        @keyframes photoHover {
-            0% { transform: translateY(0) scale(1) rotateY(0deg); }
-            100% { transform: translateY(-15px) scale(1.03) rotateY(5deg); }
-        }
-
-        .photo-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 107, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-        }
-
-        .photo-item:hover::before {
-            opacity: 1;
-        }
-
-        .photo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .photo-item:hover .photo-img {
-            transform: scale(1.1) rotate(2deg);
-        }
-
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 25px 20px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            z-index: 2;
-        }
-
-        .photo-item:hover .photo-overlay {
-            transform: translateY(0);
-        }
-
-        .photo-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #ffd700;
-            animation: textSlideIn 0.5s ease-out;
-        }
-
-        @keyframes textSlideIn {
-            0% { transform: translateX(-20px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-
-        .photo-description {
-            font-size: 14px;
-            opacity: 0.9;
-            line-height: 1.4;
-            animation: textSlideIn 0.7s ease-out;
-        }
-
-        .photo-date {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #ffd700;
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 600;
-            z-index: 2;
-            animation: dateBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes dateBounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
         }
 
         /* Album Lock Overlay */
@@ -985,6 +815,9 @@
             z-index: 10;
             border-radius: 30px;
             backdrop-filter: blur(5px);
+            /* Ensure it covers the entire section */
+            width: 100%;
+            height: 100%;
         }
 
         .lock-icon {
@@ -1031,165 +864,302 @@
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
         }
 
-        /* Photo Modal/Lightbox with Enhanced Animation */
-        .photo-modal {
-            display: none;
-            position: fixed;
-            z-index: 10001;
-            left: 0;
+        /* Photo Album Styles from photo_album.html */
+        .album-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95); /* Changed from original to fit dark theme better */
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            margin-top: 80px; /* Added for spacing */
+            animation: slideInFromRight 2.5s ease-out; /* Added animation */
+        }
+
+        .album-header {
+            background: linear-gradient(135deg, #667eea, #764ba2); /* Changed color */
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .album-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .album-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .album-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .main-display {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            background: #f8f9fa; /* Kept light for contrast */
+        }
+
+        .media-item {
+            position: absolute;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            animation: modalFadeIn 0.4s ease;
-        }
-
-        .photo-modal.active {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .media-item.active {
+            opacity: 1;
         }
 
-        .photo-modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            animation: modalZoomIn 0.4s ease;
-        }
-
-        @keyframes modalZoomIn {
-            from { transform: scale(0.7) rotate(-5deg); opacity: 0; }
-            to { transform: scale(1) rotate(0deg); opacity: 1; }
-        }
-
-        .photo-modal-img {
+        .media-item img, .media-item video {
             max-width: 100%;
-            max-height: 80vh;
-            border-radius: 15px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .photo-modal-img:hover {
-            transform: scale(1.02);
-        }
-
-        .photo-close {
-            position: absolute;
-            top: -60px;
-            right: 0;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 50px;
-            height: 50px;
+        .video-placeholder {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Changed color */
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .photo-close:hover {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.2);
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .photo-caption {
-            position: absolute;
-            bottom: -100px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            animation: captionSlideUp 0.5s ease-out 0.2s both;
-        }
-
-        @keyframes captionSlideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .photo-navigation {
+        .play-button {
             position: absolute;
             top: 50%;
-            width: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 20px;
-            pointer-events: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button::after {
+            content: '▶';
+            font-size: 20px;
+            color: #667eea; /* Changed color */
+            margin-left: 3px;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
         }
 
         .nav-btn {
-            background: rgba(255, 215, 0, 0.9);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
             border: none;
             border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            color: #333;
-            font-size: 22px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #667eea; /* Changed color */
             transition: all 0.3s ease;
-            pointer-events: all;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            animation: navPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes navPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            backdrop-filter: blur(10px);
         }
 
         .nav-btn:hover {
-            background: #ffd700;
-            transform: scale(1.2);
-            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
         }
 
-        .album-controls {
-            text-align: center;
-            margin-top: 50px;
+        .media-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
         }
 
-        .album-btn {
-            background: linear-gradient(135deg, #ffd700, #ffa500);
-            color: #333;
-            border: none;
-            padding: 18px 35px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
+        .thumbnail-strip {
+            padding: 20px;
+            background: #f8f9fa; /* Kept light for contrast */
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #667eea #f1f1f1; /* Changed color */
+        }
+
+        .thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .thumbnails::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .thumbnails::-webkit-scrollbar-thumb {
+            background: #667eea; /* Changed color */
+            border-radius: 3px;
+        }
+
+        .thumbnail {
+            min-width: 80px;
+            height: 60px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail.video {
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Changed color */
+            display: flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            animation: buttonFloat 4s ease-in-out infinite;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            text-align: center;
         }
 
-        @keyframes buttonFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        .thumbnail.active {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            border: 2px solid #667eea; /* Changed color */
         }
 
-        .album-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .media-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .main-display:hover .media-info {
+            transform: translateY(0);
+        }
+
+        .autoplay-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #667eea; /* Changed color */
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .autoplay-btn:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .autoplay-btn.active {
+            background: #667eea; /* Changed color */
+            color: white;
+        }
+
+        /* Additional Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            70% { transform: scale(0.9); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .rotate-in {
+            animation: rotateIn 1s ease-out;
+        }
+
+        @keyframes rotateIn {
+            0% { transform: rotate(-180deg) scale(0.5); opacity: 0; }
+            100% { transform: rotate(0deg) scale(1); opacity: 1; }
         }
 
         /* Success message - Dark Theme with Animation */
@@ -1356,12 +1326,6 @@
                 align-items: center;
             }
 
-            .action-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
             .decoration {
                 width: 60px;
                 height: 60px;
@@ -1469,47 +1433,6 @@
                 font-size: 16px;
             }
         }
-
-        /* Additional Animation Classes */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .bounce-in {
-            animation: bounceIn 1s ease-out;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-            70% { transform: scale(0.9); opacity: 0.9; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .fade-in-left {
-            animation: fadeInLeft 1s ease-out;
-        }
-
-        @keyframes fadeInLeft {
-            0% { transform: translateX(-50px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-
-        .rotate-in {
-            animation: rotateIn 1s ease-out;
-        }
-
-        @keyframes rotateIn {
-            0% { transform: rotate(-180deg) scale(0.5); opacity: 0; }
-            100% { transform: rotate(0deg) scale(1); opacity: 1; }
-        }
     </style>
 </head>
 <body>
@@ -1612,7 +1535,7 @@
                     <i class="fas fa-download"></i>
                     Get Personal Invitation
                 </a>
-                <a href="#photo-album" class="action-btn" onclick="scrollToPhotoAlbum()">
+                <a href="#photo-album-section" class="action-btn" onclick="scrollToPhotoAlbum()">
                     <i class="fas fa-images"></i>
                     View Photo Album
                 </a>
@@ -1626,8 +1549,8 @@
                 </a>
             </div>
 
-            <!-- Photo Album Section -->
-            <div class="photo-album-section animate-on-scroll" id="photo-album">
+            <!-- Photo Album Section (New Album) -->
+            <div class="photo-album-section animate-on-scroll" id="photo-album-section">
                 <div class="album-lock-overlay" id="albumLockOverlay">
                     <div class="lock-icon">
                         <i class="fas fa-lock"></i>
@@ -1641,36 +1564,29 @@
                     </button>
                 </div> 
                 
-                <div class="album-header">
-                    <h2 class="album-title">Memory Lane</h2>
-                    <p class="album-subtitle">Cherishing the moments we've shared together</p>
-                </div>
-                
-                <div class="photo-grid" id="photoGrid">
-                    <!-- Photos will be populated by JavaScript -->
-                </div>
-                
-                <div class="album-controls">
-                    <button class="album-btn" onclick="addMorePhotos()">
-                        <i class="fas fa-plus"></i>
-                        Load More Memories
-                    </button>
-                </div>
-            </div>
+                <div class="album-container">
+                    <div class="album-header">
+                        <h1 class="album-title">The Art of Memories</h1>
+                        <p class="album-subtitle">Explore the stories within each moment</p>
+                        <p class="album-description">Every memory is a chapter in your life's narrative</p>
+                    </div>
 
-            <!-- Photo Modal/Lightbox -->
-            <div class="photo-modal" id="photoModal">
-                <div class="photo-modal-content">
-                    <span class="photo-close" onclick="closePhotoModal()">×</span>
-                    <img class="photo-modal-img" id="modalImg" src="" alt="">
-                    <div class="photo-caption" id="photoCaption"></div>
-                    <div class="photo-navigation">
-                        <button class="nav-btn prev-btn" onclick="previousPhoto()">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="nav-btn next-btn" onclick="nextPhoto()">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                    <div class="main-display" id="mainDisplay">
+                        <button class="autoplay-btn" id="autoplayBtn">▶ Auto Play</button>
+                        <div class="media-counter" id="mediaCounter">1 / 25</div>
+                        
+                        <!-- ADDED NAVIGATION BUTTONS HERE -->
+                        <div class="navigation">
+                            <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <!-- Media items will be dynamically loaded here by PhotoAlbum class -->
+                    </div>
+
+                    <div class="thumbnail-strip">
+                        <div class="thumbnails" id="thumbnails">
+                            <!-- Thumbnails will be dynamically loaded here by PhotoAlbum class -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1681,17 +1597,6 @@
                     Can't wait to make this farewell a memorable moment with you!<br>
                     Just a ping away for any queries: <a href="https://its-divyanshu.netlify.app/" class="contact-link">Contact Me</a>
                 </p>
-         <!--       <div class="social-icons">
-                    <a href="https://twitter.com/Vinit_Shahdeo" target="_blank" class="social-icon">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                </div> -->
                 <p style="color: #a0aec0; margin-top: 20px; font-size: 16px;">
                     Join us in our happiness! 💫
                 </p>
@@ -1706,56 +1611,22 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <script>
-        // Photo Album Data (removed years)
-        const photoAlbumData = [
-            {
-                id: 4,
-                src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",
-                title: "Study Group Sessions",
-                description: "Late-night coffee runs and helping each other through tough assignments."
-            },
-            {
-                id: 5,
-                src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&h=400&fit=crop",
-                title: "Campus Life",
-                description: "Walking through campus corridors, sharing dreams and aspirations."
-            },
-            {
-                id: 6,
-                src: "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?w=600&h=400&fit=crop",
-                title: "Library Memories",
-                description: "Quiet moments of concentration interrupted by whispered jokes and encouragement."
-            },
-            {
-                id: 7,
-                src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-                title: "Achievement Moments",
-                description: "Celebrating every small victory and supporting each other through challenges."
-            },
-            {
-                id: 8,
-                src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop",
-                title: "Workshop Days",
-                description: "Learning new skills together and pushing each other to excel."
-            },
-            {
-                id: 9,
-                src: "https://images.unsplash.com/photo-1543269664-7eef42226a21?w=600&h=400&fit=crop",
-                title: "Group Projects",
-                description: "Working together on challenging assignments that tested our limits."
-            },
-            {
-                id: 10,
-                src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop",
-                title: "Final Semester",
-                description: "The bittersweet moments as we approached the end of our journey together."
-            }
-        ];
-
-        let currentPhotoIndex = 0;
-        let displayedPhotos = 4; // Initially show 4 photos
         let albumUnlocked = false; // Album access status
         const ALBUM_ACCESS_CODE = "12BL25"; // Access code for album
+
+        // Guest database for invitation downloads
+        const guestDatabase = {
+            "1234": { name: "John Doe", photo: "https://via.placeholder.com/400x600/667eea/ffffff?text=John+Doe+Invitation" },
+            "5678": { name: "Jane Smith", photo: "https://via.placeholder.com/400x600/764ba2/ffffff?text=Jane+Smith+Invitation" },
+            "9999": { name: "Guest User", photo: "https://via.placeholder.com/400x600/ffd700/333333?text=Special+Guest+Invitation" }
+        };
+
+        // Audio control variables
+        let audio = null;
+        let isPlaying = false;
+        let audioInitialized = false; // New flag to track if audio has been initialized
+        let isVideoPlaying = false; // New flag to track if a video is playing
+        let photoAlbumInstance = null; // Declare a global variable for PhotoAlbum instance
 
         // Album Access Functions
         function openAlbumAccessModal() {
@@ -1793,8 +1664,9 @@
         }
 
         function unlockAlbum() {
-            const albumSection = document.getElementById('photo-album');
+            const albumSection = document.getElementById('photo-album-section');
             const lockOverlay = document.getElementById('albumLockOverlay');
+            const albumContainer = albumSection.querySelector('.album-container'); // Get the album container
             
             // Remove lock overlay with animation
             lockOverlay.style.opacity = '0';
@@ -1803,7 +1675,11 @@
             setTimeout(() => {
                 lockOverlay.style.display = 'none';
                 albumSection.classList.remove('locked');
-                initializePhotoAlbum();
+                if (albumContainer) {
+                    albumContainer.style.display = 'block'; // Show the album container
+                }
+                // The PhotoAlbum class will handle its own initialization
+                // No need to call initializePhotoAlbum() here as the class constructor does it
                 
                 // Add unlock animation
                 albumSection.style.animation = 'bounceIn 1s ease-out';
@@ -1830,124 +1706,8 @@
             }, 2500);
         }
 
-        // Photo Album Functions
-        function initializePhotoAlbum() {
-            // Ensure the album header is visible when unlocked
-            const albumHeader = document.querySelector('.album-header');
-            if (albumHeader) albumHeader.style.display = 'block';
-
-            const albumControls = document.querySelector('.album-controls');
-            if (albumControls) albumControls.style.display = 'block';
-
-            loadPhotos();
-        }
-
-        function loadPhotos() {
-            const photoGrid = document.getElementById('photoGrid');
-            photoGrid.innerHTML = '';
-            
-            for (let i = 0; i < Math.min(displayedPhotos, photoAlbumData.length); i++) {
-                const photo = photoAlbumData[i];
-                const photoItem = createPhotoElement(photo, i);
-                photoGrid.appendChild(photoItem);
-            }
-            
-            // Add staggered animation
-            const photoItems = photoGrid.querySelectorAll('.photo-item');
-            photoItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            // Hide the "Load More Memories" button if all photos are displayed
-            const albumControls = document.querySelector('.album-controls');
-            if (albumControls) {
-                if (displayedPhotos >= photoAlbumData.length) {
-                    albumControls.style.display = 'none';
-                } else {
-                    albumControls.style.display = 'block';
-                }
-            }
-        }
-
-        function createPhotoElement(photo, index) {
-            const photoDiv = document.createElement('div');
-            photoDiv.className = 'photo-item';
-            photoDiv.onclick = () => openPhotoModal(index);
-            
-            photoDiv.innerHTML = `
-                <img src="${photo.src}" alt="${photo.title}" class="photo-img" loading="lazy">
-                <div class="photo-overlay">
-                    <div class="photo-title">${photo.title}</div>
-                    <div class="photo-description">${photo.description}</div>
-                </div>
-            `;
-            
-            return photoDiv;
-        }
-
-        function addMorePhotos() {
-            if (!albumUnlocked) return;
-            
-            displayedPhotos = Math.min(displayedPhotos + 4, photoAlbumData.length);
-            loadPhotos();
-        }
-
-        function openPhotoModal(index) {
-            if (!albumUnlocked) return;
-            
-            currentPhotoIndex = index;
-            const modal = document.getElementById('photoModal');
-            const modalImg = document.getElementById('modalImg');
-            const caption = document.getElementById('photoCaption');
-            
-            const photo = photoAlbumData[index];
-            modalImg.src = photo.src;
-            caption.innerHTML = `
-                <h3 style="color: #ffd700; margin-bottom: 10px; font-size: 20px;">${photo.title}</h3>
-                <p style="font-size: 16px; line-height: 1.4;">${photo.description}</p>
-            `;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePhotoModal() {
-            const modal = document.getElementById('photoModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function nextPhoto() {
-            currentPhotoIndex = (currentPhotoIndex + 1) % Math.min(displayedPhotos, photoAlbumData.length);
-            updateModalPhoto();
-        }
-
-        function previousPhoto() {
-            currentPhotoIndex = (currentPhotoIndex - 1 + Math.min(displayedPhotos, photoAlbumData.length)) % Math.min(displayedPhotos, photoAlbumData.length);
-            updateModalPhoto();
-        }
-
-        function updateModalPhoto() {
-            const modalImg = document.getElementById('modalImg');
-            const caption = document.getElementById('photoCaption');
-            const photo = photoAlbumData[currentPhotoIndex];
-            
-            modalImg.style.opacity = '0';
-            modalImg.style.transform = 'scale(0.9)';
-            
-            setTimeout(() => {
-                modalImg.src = photo.src;
-                caption.innerHTML = `
-                    <h3 style="color: #ffd700; margin-bottom: 10px; font-size: 20px;">${photo.title}</h3>
-                    <p style="font-size: 16px; line-height: 1.4;">${photo.description}</p>
-                `;
-                modalImg.style.opacity = '1';
-                modalImg.style.transform = 'scale(1)';
-            }, 200);
-        }
-
         function scrollToPhotoAlbum() {
-            document.getElementById('photo-album').scrollIntoView({
+            document.getElementById('photo-album-section').scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
@@ -1959,18 +1719,6 @@
                 }, 800);
             }
         }
-
-        // Guest database for invitation downloads
-        const guestDatabase = {
-            "1234": { name: "John Doe", photo: "https://via.placeholder.com/400x600/667eea/ffffff?text=John+Doe+Invitation" },
-            "5678": { name: "Jane Smith", photo: "https://via.placeholder.com/400x600/764ba2/ffffff?text=Jane+Smith+Invitation" },
-            "9999": { name: "Guest User", photo: "https://via.placeholder.com/400x600/ffd700/333333?text=Special+Guest+Invitation" }
-        };
-
-        // Audio control variables
-        let audio = null;
-        let isPlaying = false;
-        let audioInitialized = false; // New flag to track if audio has been initialized
 
         // Enhanced Animation Observer
         function setupScrollAnimations() {
@@ -2011,7 +1759,7 @@
         function initAudioOnInteraction() {
             if (audioInitialized) return; // Only run once
 
-            audio = document.getElementById('backgroundMusic');
+            // audio is already initialized in DOMContentLoaded
             const audioControl = document.getElementById('audioControl');
             const audioIcon = document.getElementById('audioIcon');
 
@@ -2037,11 +1785,15 @@
         function startAnimations() {
             createParticles();
             startCountdown();
-            // Hide album header and controls initially
-            const albumHeader = document.querySelector('.album-header');
-            if (albumHeader) albumHeader.style.display = 'none';
-            const albumControls = document.querySelector('.album-controls');
-            if (albumControls) albumControls.style.display = 'none';
+            // Initially hide the album content until unlocked
+            const albumSection = document.getElementById('photo-album-section');
+            if (albumSection) {
+                albumSection.classList.add('locked');
+                const albumContainer = albumSection.querySelector('.album-container');
+                if (albumContainer) {
+                    albumContainer.style.display = 'none'; // Ensure it's hidden from the start
+                }
+            }
         }
 
         // Create floating particles with enhanced animation
@@ -2068,7 +1820,7 @@
             const notes = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
             
             setInterval(() => {
-                if (isPlaying) {
+                if (isPlaying && !isVideoPlaying) { // Only show notes if music is playing and no video is active
                     const note = document.createElement('div');
                     note.className = 'music-note';
                     note.innerHTML = notes[Math.floor(Math.random() * notes.length)];
@@ -2255,6 +2007,254 @@
             });
         }
 
+        // Photo Album Class from photo_album.html
+        class PhotoAlbum {
+            constructor(audioElement) { // Accept audioElement as a parameter
+                this.currentIndex = 0;
+                this.autoplayInterval = null;
+                this.isAutoplay = false;
+                this.currentVideo = null;
+                this.backgroundAudio = audioElement; // Store the background audio element
+                
+                this.mediaData = this.generateMediaData();
+                
+                this.init();
+            }
+
+            generateMediaData() {
+                const photos = [
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', title: 'Mountain Serenity', desc: 'A peaceful moment captured in nature\'s embrace' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', title: 'Ocean Waves', desc: 'The endless dance of water and sky' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop', title: 'Forest Path', desc: 'Where adventure begins' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop', title: 'Golden Hour', desc: 'When the world glows with magic' },
+                    { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4', title: 'Summer Memories', desc: 'A compilation of sunny days' }, // Added video URL
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=600&fit=crop', title: 'Desert Dreams', desc: 'Vast landscapes and endless possibilities' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop', title: 'Urban Lights', desc: 'City life in motion' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc=29?w=800&h=600&fit=crop', title: 'Lake Reflection', desc: 'Mirror of tranquility' },
+                    { type: 'video', url: 'https://www.w3schools.com/html/movie.mp4', title: 'Winter Wonderland', desc: 'Snowflakes dancing in the wind' }, // Added video URL
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=800&h=600&fit=crop', title: 'Autumn Colors', desc: 'Nature\'s final masterpiece' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1464822759844-d150dd23607b?w=800&h=600&fit=crop', title: 'Starry Night', desc: 'Dreams written in starlight' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', title: 'River Journey', desc: 'Following the flow of time' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1481833761820-0509d3217039?w=800&h=600&fit=crop', title: 'Garden Bloom', desc: 'Where life flourishes' },
+                    { type: 'video', url: 'https://www.w3schools.com/tags/movie.mp4', title: 'Spring Awakening', desc: 'Nature coming back to life' }, // Added video URL
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', title: 'Cloud Dancing', desc: 'Sky artistry in motion' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop', title: 'Morning Dew', desc: 'Fresh beginnings' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop', title: 'Sunset Dreams', desc: 'Day\'s beautiful farewell' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', title: 'Valley Vista', desc: 'Panoramic perfection' },
+                    { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4', title: 'Ocean Rhythm', desc: 'Waves singing their eternal song' }, // Added video URL
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=600&fit=crop', title: 'Desert Sunrise', desc: 'First light over the dunes' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop', title: 'City Skyline', desc: 'Modern monuments reaching high' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop', title: 'Peaceful Waters', desc: 'Calm in a chaotic world' },
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=800&h=600&fit=crop', title: 'Golden Leaves', desc: 'Time\'s beautiful transition' },
+                    { type: 'video', url: 'https://www.w3schools.com/html/movie.mp4', title: 'Night Sky Time-lapse', desc: 'Stars painting stories above' }, // Added video URL
+                    { type: 'photo', url: 'https://images.unsplash.com/photo-1464822759844-d150dd23607b?w=800&h=600&fit=crop', title: 'Final Memory', desc: 'The end of a perfect journey' }
+                ];
+
+                return photos;
+            }
+
+            init() {
+                this.createMediaItems();
+                this.createThumbnails();
+                this.bindEvents();
+                this.updateCounter(); // Initial counter update
+            }
+
+            createMediaItems() {
+                const mainDisplay = document.getElementById('mainDisplay');
+                
+                // Clear existing items except navigation and controls
+                const existingItems = mainDisplay.querySelectorAll('.media-item');
+                existingItems.forEach(item => item.remove());
+
+                this.mediaData.forEach((media, index) => {
+                    const mediaItem = document.createElement('div');
+                    mediaItem.className = `media-item ${index === 0 ? 'active' : ''}`;
+                    mediaItem.setAttribute('data-index', index);
+
+                    if (media.type === 'photo') {
+                        mediaItem.innerHTML = `
+                            <img src="${media.url}" alt="${media.title}">
+                            <div class="media-info">
+                                <h3>${media.title}</h3>
+                                <p>${media.desc}</p>
+                            </div>
+                        `;
+                    } else {
+                        // For videos, create a video element and a play button
+                        mediaItem.innerHTML = `
+                            <video src="${media.url}" controls preload="metadata" style="display:none;"></video>
+                            <div class="video-placeholder">
+                                📹 ${media.title}
+                                <div class="play-button"></div>
+                            </div>
+                            <div class="media-info">
+                                <h3>${media.title}</h3>
+                                <p>${media.desc}</p>
+                            </div>
+                        `;
+                        const videoElement = mediaItem.querySelector('video');
+                        const playButton = mediaItem.querySelector('.play-button');
+                        const videoPlaceholder = mediaItem.querySelector('.video-placeholder');
+
+                        playButton.addEventListener('click', () => {
+                            this.handleVideoPlay(videoElement, videoPlaceholder, playButton);
+                        });
+
+                        videoElement.addEventListener('play', () => {
+                            isVideoPlaying = true;
+                            if (this.backgroundAudio && isPlaying) { // Use this.backgroundAudio
+                                this.backgroundAudio.pause();
+                            }
+                            // Pause autoplay if a video starts playing
+                            if (this.isAutoplay) {
+                                this.toggleAutoplay();
+                            }
+                        });
+
+                        videoElement.addEventListener('pause', () => {
+                            isVideoPlaying = false;
+                            if (this.backgroundAudio && isPlaying) { // Use this.backgroundAudio
+                                this.backgroundAudio.play().catch(e => console.log("Background music resume failed:", e));
+                            }
+                        });
+
+                        videoElement.addEventListener('ended', () => {
+                            isVideoPlaying = false;
+                            if (this.backgroundAudio && isPlaying) { // Use this.backgroundAudio
+                                this.backgroundAudio.play().catch(e => console.log("Background music resume failed:", e));
+                            }
+                            // Hide video and show placeholder again
+                            videoElement.style.display = 'none';
+                            videoPlaceholder.style.display = 'flex';
+                        });
+                    }
+
+                    mainDisplay.appendChild(mediaItem);
+                });
+            }
+
+            handleVideoPlay(videoElement, videoPlaceholder, playButton) {
+                // Pause any other playing video first
+                document.querySelectorAll('.media-item video').forEach(vid => {
+                    if (vid !== videoElement && !vid.paused) {
+                        vid.pause();
+                        vid.style.display = 'none';
+                        vid.closest('.media-item').querySelector('.video-placeholder').style.display = 'flex';
+                    }
+                });
+
+                videoPlaceholder.style.display = 'none';
+                videoElement.style.display = 'block';
+                videoElement.play().catch(e => console.log("Video play failed:", e));
+            }
+
+            createThumbnails() {
+                const thumbnails = document.getElementById('thumbnails');
+                thumbnails.innerHTML = '';
+
+                this.mediaData.forEach((media, index) => {
+                    const thumbnail = document.createElement('div');
+                    thumbnail.className = `thumbnail ${media.type} ${index === 0 ? 'active' : ''}`;
+                    thumbnail.setAttribute('data-index', index);
+
+                    if (media.type === 'photo') {
+                        thumbnail.innerHTML = `<img src="${media.url.replace('w=800&h=600', 'w=150&h=100')}" alt="${media.title}">`;
+                    } else {
+                        thumbnail.innerHTML = `📹<br>${index + 1}`;
+                    }
+
+                    thumbnail.addEventListener('click', () => this.goToSlide(index));
+                    thumbnails.appendChild(thumbnail);
+                });
+            }
+
+            bindEvents() {
+                document.getElementById('prevBtn').addEventListener('click', () => this.previousSlide());
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
+                document.getElementById('autoplayBtn').addEventListener('click', () => this.toggleAutoplay());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.previousSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                    if (e.key === ' ') {
+                        e.preventDefault();
+                        this.toggleAutoplay();
+                    }
+                });
+            }
+
+            goToSlide(index) {
+                if (index === this.currentIndex) return;
+
+                // Pause any playing video before switching slides
+                const currentMediaItem = document.querySelector('.media-item.active');
+                if (currentMediaItem && currentMediaItem.querySelector('video')) {
+                    const video = currentMediaItem.querySelector('video');
+                    if (!video.paused) {
+                        video.pause();
+                        video.style.display = 'none';
+                        currentMediaItem.querySelector('.video-placeholder').style.display = 'flex';
+                    }
+                }
+
+                // Update active media item
+                document.querySelectorAll('.media-item').forEach(item => item.classList.remove('active'));
+                document.querySelectorAll('.thumbnail').forEach(item => item.classList.remove('active'));
+
+                document.querySelector(`.media-item[data-index="${index}"]`).classList.add('active');
+                document.querySelector(`.thumbnail[data-index="${index}"]`).classList.add('active');
+
+                this.currentIndex = index;
+                this.updateCounter();
+
+                // Scroll thumbnail into view
+                const activeThumbnail = document.querySelector(`.thumbnail[data-index="${index}"]`);
+                activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+
+            nextSlide() {
+                const nextIndex = (this.currentIndex + 1) % this.mediaData.length;
+                this.goToSlide(nextIndex);
+            }
+
+            previousSlide() {
+                const prevIndex = (this.currentIndex - 1 + this.mediaData.length) % this.mediaData.length;
+                this.goToSlide(prevIndex);
+            }
+
+            toggleAutoplay() {
+                const btn = document.getElementById('autoplayBtn');
+                
+                if (this.isAutoplay) {
+                    clearInterval(this.autoplayInterval);
+                    this.isAutoplay = false;
+                    btn.textContent = '▶ Auto Play';
+                    btn.classList.remove('active');
+                } else {
+                    // If a video is playing, pause it and then start autoplay
+                    const currentMediaItem = document.querySelector('.media-item.active');
+                    if (currentMediaItem && currentMediaItem.querySelector('video')) {
+                        const video = currentMediaItem.querySelector('video');
+                        if (!video.paused) {
+                            video.pause();
+                            video.style.display = 'none';
+                            currentMediaItem.querySelector('.video-placeholder').style.display = 'flex';
+                        }
+                    }
+                    this.autoplayInterval = setInterval(() => this.nextSlide(), 3000);
+                    this.isAutoplay = true;
+                    btn.textContent = '⏸ Pause';
+                    btn.classList.add('active');
+                }
+            }
+
+            updateCounter() {
+                document.getElementById('mediaCounter').textContent = `${this.currentIndex + 1} / ${this.mediaData.length}`;
+            }
+        }
+
         // Enhanced Event Listeners
         
         // Album code input validation
@@ -2289,22 +2289,6 @@
 
         // Enhanced Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            // Photo modal navigation
-            const photoModal = document.getElementById('photoModal');
-            if (photoModal.classList.contains('active')) {
-                switch(e.key) {
-                    case 'Escape':
-                        closePhotoModal();
-                        break;
-                    case 'ArrowLeft':
-                        previousPhoto();
-                        break;
-                    case 'ArrowRight':
-                        nextPhoto();
-                        break;
-                }
-            }
-            
             // Album access modal
             const albumModal = document.getElementById('albumAccessModal');
             if (albumModal.classList.contains('active') && e.key === 'Escape') {
@@ -2319,10 +2303,6 @@
         });
 
         // Close modals on background click
-        document.getElementById('photoModal').addEventListener('click', function(e) {
-            if (e.target === this) closePhotoModal();
-        });
-
         document.getElementById('albumAccessModal').addEventListener('click', function(e) {
             if (e.target === this) closeAlbumModal();
         });
@@ -2333,7 +2313,7 @@
 
         // Handle visibility change for audio
         document.addEventListener('visibilitychange', function() {
-            if (audio && isPlaying) { // Check if audio is initialized and playing
+            if (audio && isPlaying && !isVideoPlaying) { // Only pause/play if no video is active
                 if (document.hidden) {
                     audio.pause();
                 } else {
@@ -2357,6 +2337,13 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Initialize the new photo album when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize audio element here, but don't play it yet
+            audio = document.getElementById('backgroundMusic');
+            photoAlbumInstance = new PhotoAlbum(audio); // Pass the audio element to the PhotoAlbum constructor
+        });
     </script>
 </body>
 </html>
