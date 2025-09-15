@@ -1922,7 +1922,22 @@
             <p style="font-style: italic; margin-top: 15px">Dinner & Dancing to Follow</p>
           </div>
         </div>
-
+        <!-- Farewell Letter Envelope (Hidden until countdown ends) -->
+        <div class="farewell-envelope-wrapper" id="farewellEnvelopeWrapper">
+          <div class="farewell-envelope close" id="farewellEnvelope">
+            <div class="front flap"></div>
+            <div class="front pocket"></div>
+            <div class="letter-preview">
+              <p>A special message awaits you...</p>
+              <p style="font-size: 0.7em; margin-top: 5px;">Click to open!</p>
+            </div>
+            <div class="hearts">
+              <div class="heart a1"></div>
+              <div class="heart a2"></div>
+              <div class="heart a3"></div>
+            </div>
+          </div>
+        </div>
         <!-- Countdown Timer -->
         <div class="countdown-container animate-on-scroll">
           <div class="countdown">
@@ -1956,22 +1971,7 @@
           </a>
         </div>
 
-        <!-- Farewell Letter Envelope (Hidden until countdown ends) -->
-        <div class="farewell-envelope-wrapper" id="farewellEnvelopeWrapper">
-          <div class="farewell-envelope close" id="farewellEnvelope">
-            <div class="front flap"></div>
-            <div class="front pocket"></div>
-            <div class="letter-preview">
-              <p>A special message awaits you...</p>
-              <p style="font-size: 0.7em; margin-top: 5px;">Click to open!</p>
-            </div>
-            <div class="hearts">
-              <div class="heart a1"></div>
-              <div class="heart a2"></div>
-              <div class="heart a3"></div>
-            </div>
-          </div>
-        </div>
+
 
         <!-- Photo Album Section (New Album) -->
         <div class="photo-album-section animate-on-scroll" id="photo-album-section">
@@ -2289,7 +2289,7 @@ With heartfelt wishes.`;
 
       // Enhanced Countdown Timer
       function startCountdown() {
-        const countDownDate = new Date("nov 26, 2024 16:10:00").getTime(); // Set your farewell date and time here (UPDATED TO 2024)
+        const countDownDate = new Date("sep 15, 2025 22:00:00").getTime(); // Set your farewell date and time here (UPDATED TO 2024)
         const countdownContainer = document.querySelector(".countdown-container"); // Get the countdown container
 
         const timer = setInterval(function () {
