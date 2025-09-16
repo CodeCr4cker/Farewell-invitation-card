@@ -2100,15 +2100,15 @@
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
-        padding: 12px 24px;
+        padding: 8px 16px; /* Decreased padding */
         border-radius: 25px;
         cursor: pointer;
         font-family: "Poppins", sans-serif;
-        font-size: 14px;
+        font-size: 12px; /* Decreased font size */
         font-weight: 600;
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        min-width: 120px;
+        min-width: 90px; /* Decreased minimum width */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2487,7 +2487,7 @@
             <a href="https://its-divyanshu.netlify.app/" class="contact-link">Contact Me</a>
           </p>
           <p style="color: #a0aec0; margin-top: 20px; font-size: 16px">Join us in our happiness! 💫</p>
-          <p style="color: #a0aec0; margin-top: 20px; font-size: 16px">© <a href="https://i-am-divyanshu.netlify.app/" class="contact-link">Divyanshu Pandey</a></p>
+          <p style="color: #a0aec0; margin-top: 20px; font-size: 16px">© Divyanshu Pandey</p>
         </div>
       </div>
 
@@ -3581,13 +3581,13 @@ With heartfelt wishes.`;
             
             pages.forEach((page, idx) => {
               page.style.setProperty("--i", idx);
-              page.addEventListener("click", (evt) => {
-                if (evt.target.closest(".content__img-wrapper")) return;
-                if (this.zoomedImage) return;
-
-                const curr = evt.target.closest(".back") ? idx : idx + 1;
-                this.goToPage(curr);
-              });
+              // Remove the click listener on individual pages to prevent opening on click
+              // page.addEventListener("click", (evt) => {
+              //   if (evt.target.closest(".content__img-wrapper")) return;
+              //   if (this.zoomedImage) return;
+              //   const curr = evt.target.closest(".back") ? idx : idx + 1;
+              //   this.goToPage(curr);
+              // });
             });
           },
           goToPage(pageIndex) {
@@ -3601,14 +3601,14 @@ With heartfelt wishes.`;
               this.goToPage(this.currentPage + 1);
               // Play flipbook music when opening the book (moving to next page)
               if (this.currentPage === 1 && flipbookAudio) { // Assuming page 1 is the first content page
-                if (audio && isPlaying) {
+                if (audio && isPlaying) { // Check if background music is playing
                   audio.pause();
                 }
                 flipbookAudio.play().catch(e => console.error("Flipbook music play failed:", e));
-                isFlipbookMusicPlaying = true;
+                isFlipbookMusicPlaying = true; // Set flipbook music playing flag to true
               }
             } else {
-              // If at the last page and trying to go next, close the book and stop flipbook music
+              // If at the last page, automatically close the book and stop flipbook music
               this.closeBook();
             }
           },
@@ -3624,6 +3624,10 @@ With heartfelt wishes.`;
                   audio.play().catch(e => console.error("Background music resume failed:", e));
                 }
               }
+            }
+            // Prevent closing if not at the first page, unless it's the very first page (index 0)
+            if (this.currentPage === 0) {
+              this.closeBook();
             }
           },
           closeBook() {
