@@ -482,12 +482,18 @@
         animation: decorationFloat 4s ease-in-out infinite;
       }
 
+      .decoration img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensure the image fits within the container */
+      }
+
       .top-right-decoration {
         top: 20px;
         right: 20px;
         width: 80px;
         height: 80px;
-        background: rgba(255, 215, 0, 0.1);
+        background: rgba(255, 215, 0, 0.1); /* Background for the circular shape */
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -502,7 +508,7 @@
         left: 20px;
         width: 80px;
         height: 80px;
-        background: rgba(255, 107, 107, 0.1);
+        background: rgba(255, 107, 107, 0.1); /* Background for the circular shape */
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -2377,12 +2383,10 @@
 
       <!-- Decorations -->
       <div class="decoration top-right-decoration rotate-in">
-      
-        <img src="https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/img/right.png">
+        <img src="https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/img/right.png" alt="Right Decoration">
       </div>
       <div class="decoration top-left-decoration bounce-in">
-      
-        <img src="https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/img/left.png">
+        <img src="https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/img/left.png" alt="Left Decoration">
       </div>
 
       <div class="container">
@@ -2394,6 +2398,9 @@
             <p>Join us for an unforgettable evening on <span class="highlight">29 November 2025</span></p>
             <p>at <span class="highlight">Ashirwad Garden</span>, Ratu, Ranchi</p>
             <p style="font-style: italic; margin-top: 15px">Dinner & Dancing to Follow</p>
+            <p style="font-size: 16px; color: #a0aec0; margin-top: 10px;">
+              Organized by the students of Class 12th, Session 2025-26, of BL Academy.
+            </p>
           </div>
         </div>
         <!-- Farewell Letter Envelope (Hidden until countdown ends) -->
