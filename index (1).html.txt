@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>MÅ BRA MED LJUD</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Loader Styles */
+      .loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        transition: opacity 0.5s ease-out;
+      }
+
+      .loader {
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .loader-animation {
+        width: 120px;
+        height: 120px;
+        position: relative;
+        margin: 0 auto 30px;
+      }
+
+      .loader-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #ffd700;
+        animation: rotate 2s linear infinite;
+      }
+
+      .loader-ring:nth-child(2) {
+        width: 80%;
+        height: 80%;
+        top: 10%;
+        left: 10%;
+        border-top-color: #E91E63;
+        animation-duration: 1.5s;
+        animation-direction: reverse;
+      }
+
+      .loader-ring:nth-child(3) {
+        width: 60%;
+        height: 60%;
+        top: 20%;
+        left: 20%;
+        border-top-color: #4ecdc4;
+        animation-duration: 1s;
+      }
+
+      .loader-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: #ffd700;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .loader-text {
+        font-family: "Poppins", sans-serif;
+        font-size: 22px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        background: linear-gradient(45deg, #ffd700, #E91E63, #4ecdc4);
+        background-size: 200% 200%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 3s ease infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+      }
+
+      @keyframes gradient {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* Main Content */
+      .main-content {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+        display: none;
+      }
+
+      .main-content.fade-in-content {
+        opacity: 1;
+        transition: opacity 1s ease-in;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Audio Control Button */
+      .audio-control {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        background: linear-gradient(135deg, #ffd700, #ffa500);
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        color: #333;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .audio-control:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+      }
+
+      .audio-control.playing {
+        animation: soundWaves 2s ease-in-out infinite;
+      }
+
+      @keyframes soundWaves {
+        0%,
+        100% {
+          box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+        50% {
+          box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6),
+            0 0 0 10px rgba(255, 215, 0, 0.1), 0 0 0 20px rgba(255, 215, 0, 0.05);
+        }
+      }
+
+      /* Particle Animation */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 215, 0, 0.6);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      /* Header Decorations */
+      .decoration {
+        position: absolute;
+        z-index: 2;
+        animation: decorationFloat 4s ease-in-out infinite;
+      }
+
+      .decoration img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .top-right-decoration {
+        top: 20px;
+        right: 20px;
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #ffd700;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+      }
+
+      .top-left-decoration {
+        top: 20px;
+        left: 20px;
+        width: 80px;
+        height: 80px;
+        background: rgba(233, 30, 99, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #E91E63;
+        border: 2px solid rgba(233, 30, 99, 0.3);
+        animation-delay: -2s;
+      }
+
+      @keyframes decorationFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(5deg);
+        }
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 3;
+      }
+
+      /* Title Section */
+      .title-section {
+        text-align: left;
+        margin: 40px 0 40px;
+        padding: 0 20px;
+        position: relative;
+        animation: slideInFromTop 1s ease-out;
+      }
+
+      @keyframes slideInFromTop {
+        0% {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .main-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #FFD700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        animation: glow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        0% {
+          filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+        }
+        100% {
+          filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+        }
+      }
+
+      .sub-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.1rem;
+        color: #D4AF37;
+        margin-bottom: 30px;
+        font-weight: 400;
+        line-height: 1.8;
+        animation: fadeInUp 1.5s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        0% {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .event-details {
+        background: transparent;
+        backdrop-filter: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 20px 0;
+        border: none;
+        animation: slideInFromBottom 1.8s ease-out;
+      }
+
+      @keyframes slideInFromBottom {
+        0% {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .event-details p {
+        color: #D4AF37;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.8;
+        margin-bottom: 10px;
+      }
+
+      .highlight {
+        color: #E91E63;
+        font-weight: 600;
+      }
+
+      /* Team Section */
+      .team-section {
+        margin: 60px 0;
+        padding: 0 20px;
+        text-align: left;
+        animation: fadeInUp 2s ease-out;
+      }
+
+      .team-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #FFD700;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .team-description {
+        color: #D4AF37;
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 30px;
+        max-width: 400px;
+        margin: 0;
+      }
+
+      .team-member {
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .team-member:hover {
+        transform: translateY(-10px);
+      }
+
+      .team-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid #E91E63;
+        object-fit: cover;
+        margin: 0 auto 15px;
+        box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .team-member:hover .team-avatar {
+        border-color: #FFD700;
+        box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+      }
+
+      .team-name {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        color: #D4AF37;
+        font-weight: 500;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        margin: 60px 0 40px;
+        padding: 30px 20px;
+        background: transparent;
+        backdrop-filter: none;
+        border-radius: 0;
+        border: none;
+        animation: footerSlideUp 2.8s ease-out;
+      }
+
+      @keyframes footerSlideUp {
+        0% {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .footer-text {
+        color: #999;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .footer-link {
+        color: #E91E63;
+        text-decoration: none;
+        font-weight: 400;
+      }
+
+      .footer-link:hover {
+        color: #FFD700;
+      }
+
+      /* Animation Classes */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .animate-on-scroll.animated {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Music note animation */
+      .music-note {
+        position: fixed;
+        font-size: 24px;
+        color: rgba(255, 215, 0, 0.7);
+        pointer-events: none;
+        z-index: 2;
+        animation: musicFloat 5s ease-in-out infinite;
+      }
+
+      @keyframes musicFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg) scale(1);
+          opacity: 0.7;
+        }
+        25% {
+          transform: translateY(-15px) rotate(90deg) scale(1.2);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg) scale(1);
+          opacity: 0.8;
+        }
+        75% {
+          transform: translateY(-15px) rotate(270deg) scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      /* Curtain Styles */
+      .rnOuter {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+      }
+
+      .rnInner,
+      .rnInnerRight {
+        background: #ae1313;
+        width: 100%;
+        position: absolute;
+        top: -10%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        transform-style: preserve-3d;
+        transition: transform 4s ease-in-out;
+      }
+
+      .rnInner {
+        transform-origin: -120% top;
+      }
+
+      .rnInnerRight {
+        transform-origin: 120% top;
+      }
+
+      .rnUnit {
+        width: 10vw;
+        height: 120vh;
+        background: repeating-linear-gradient(to left, #e51919 4vw, #890f0f 8vw, #ef7575 10vw);
+        background-size: 100% 100%;
+        display: inline-block;
+        transform-origin: 0 0%;
+        transform: rotate(3deg);
+        animation: 2s infinite rnUnit;
+      }
+
+      @keyframes rnUnit {
+        50% {
+          transform: rotate(-3deg);
+        }
+      }
+
+      .rnUnit:nth-child(1) {
+        animation-delay: -0.1s;
+      }
+      .rnUnit:nth-child(2) {
+        animation-delay: -0.2s;
+      }
+      .rnUnit:nth-child(3) {
+        animation-delay: -0.3s;
+      }
+      .rnUnit:nth-child(4) {
+        animation-delay: -0.4s;
+      }
+      .rnUnit:nth-child(5) {
+        animation-delay: -0.5s;
+      }
+      .rnUnit:nth-child(6) {
+        animation-delay: -0.6s;
+      }
+      .rnUnit:nth-child(7) {
+        animation-delay: -0.7s;
+      }
+      .rnUnit:nth-child(8) {
+        animation-delay: -0.8s;
+      }
+      .rnUnit:nth-child(9) {
+        animation-delay: -0.9s;
+      }
+      .rnUnit:nth-child(10) {
+        animation-delay: -1s;
+      }
+
+      .rxWorld:hover .rnInner.open {
+        transform-origin: -120% top;
+        transform: scaleX(0);
+      }
+
+      .rxWorld:hover .rnInnerRight.open {
+        transform-origin: 120% top;
+        transform: scaleX(0);
+      }
+
+      .rxWorld #curtain {
+        display: flex;
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10001;
+        cursor: pointer;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .container {
+          padding: 15px;
+        }
+
+        .main-title {
+          font-size: 2rem;
+          letter-spacing: 1px;
+        }
+
+        .sub-title {
+          font-size: 1rem;
+        }
+
+        .event-details p {
+          font-size: 15px;
+        }
+
+        .team-title {
+          font-size: 1.3rem;
+        }
+
+        .decoration {
+          width: 60px;
+          height: 60px;
+          font-size: 18px;
+        }
+
+        .audio-control {
+          bottom: 20px;
+          right: 20px;
+          width: 50px;
+          height: 50px;
+          font-size: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .main-title {
+          font-size: 1.8rem;
+        }
+
+        .sub-title {
+          font-size: 0.95rem;
+        }
+
+        .event-details p {
+          font-size: 14px;
+        }
+
+        .team-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+
+        .team-avatar {
+          width: 90px;
+          height: 90px;
+        }
+
+        .team-title {
+          font-size: 1.2rem;
+        }
+
+        .team-description {
+          font-size: 14px;
+        }
+      }
+
+      .d-none {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+      <div class="loader">
+        <div class="loader-animation">
+          <div class="loader-ring"></div>
+          <div class="loader-ring"></div>
+          <div class="loader-ring"></div>
+          <div class="loader-center">
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+        <div class="loader-text">Laddar din inbjudan...</div>
+      </div>
+    </div>
+
+    <!-- Curtain -->
+    <div
+      id="curtain"
+      class="rxWorld"
+      style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10001">
+      <section class="rnOuter">
+        <div class="rnInner">
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+        </div>
+        <div class="rnInnerRight">
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+          <div class="rnUnit"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Audio Control Button -->
+    <button class="audio-control" id="audioControl" style="display: none">
+      <i class="fas fa-play" id="audioIcon"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- Particles Background -->
+      <div class="particles" id="particles"></div>
+
+      <!-- Music Notes -->
+      <div class="music-notes"></div>
+
+      <!-- Decorations -->
+      <div class="decoration top-right-decoration">
+        <i class="fas fa-music"></i>
+      </div>
+      <div class="decoration top-left-decoration">
+        <i class="fas fa-heart"></i>
+      </div>
+
+      <div class="container">
+        <!-- Title Section -->
+        <div class="title-section animate-on-scroll">
+          <h1 class="main-title">MÅ BRA MED LJUD</h1>
+          <div class="event-details">
+            <p class="sub-title">
+              Dagen kommer att gå i ljudets tecken och hur det påverkar oss på olika sätt. Då temat är
+              landa och ladda inför sommaren så kommer vi att fokusera på ljud och övningar till just
+              det. Tanken är även att du kan ta med dig tips och verktyg ifrån dagen som du kan använda
+              hemma om du vill.
+            </p>
+          </div>
+        </div>
+
+        <!-- Registration Section -->
+        <div class="team-section animate-on-scroll">
+          <h2 class="team-title">Anmäl deltagande</h2>
+          <p class="team-description">
+            Vi ser fram emot att träffa dig! Anmäl dig genom att
+            <span class="highlight">klicka</span> på din <span class="highlight">kontakt</span> eller
+            skicka ett DM till någon av ledarna.
+          </p>
+
+          <!-- Team Members Grid -->
+          <div class="team-grid">
+            <div class="team-member">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop"
+                alt="Ledare 1"
+                class="team-avatar" />
+            </div>
+            <div class="team-member">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
+                alt="Ledare 2"
+                class="team-avatar" />
+            </div>
+            <div class="team-member">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop"
+                alt="Ledare 3"
+                class="team-avatar" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer animate-on-scroll">
+          <p class="footer-text">
+            © 2025 <a href="#" class="footer-link">JaqiKai</a> – Webbplats skapad med 💜
+          </p>
+        </div>
+      </div>
+
+      <!-- Hidden audio element -->
+      <audio id="backgroundMusic" loop preload="auto">
+        <source
+          src="https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/mp3/song.mp3"
+          type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+      let audio = null;
+      let isPlaying = false;
+      let audioInitialized = false;
+
+      // Loader functionality
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          document.getElementById("loader").style.opacity = "0";
+          setTimeout(() => {
+            document.getElementById("loader").style.display = "none";
+            const curtain = document.getElementById("curtain");
+            if (curtain) {
+              curtain.style.display = "flex";
+            }
+          }, 500);
+        }, 2000);
+      });
+
+      // Initialize audio on first user interaction
+      function initAudioOnInteraction() {
+        if (audioInitialized) return;
+
+        const audioControl = document.getElementById("audioControl");
+
+        audio
+          .play()
+          .then(() => {
+            isPlaying = true;
+            audioInitialized = true;
+            if (audioControl) audioControl.remove();
+            createMusicNotes();
+          })
+          .catch((error) => {
+            console.log("Audio play failed on interaction:", error);
+            if (audioControl) audioControl.style.display = "flex";
+          });
+      }
+
+      // Start animations
+      function startAnimations() {
+        createParticles();
+        setupScrollAnimations();
+      }
+
+      // Create floating particles
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        for (let i = 0; i < 60; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.top = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 6 + "s";
+          particle.style.animationDuration = Math.random() * 4 + 4 + "s";
+
+          const colors = ["rgba(255, 215, 0, 0.6)", "rgba(233, 30, 99, 0.6)", "rgba(78, 205, 196, 0.6)"];
+          particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Create floating music notes
+      function createMusicNotes() {
+        const notes = ["♪", "♫", "♬", "♩", "🎵", "🎶"];
+
+        setInterval(() => {
+          if (isPlaying) {
+            const note = document.createElement("div");
+            note.className = "music-note";
+            note.innerHTML = notes[Math.floor(Math.random() * notes.length)];
+            note.style.left = Math.random() * 100 + "%";
+            note.style.top = "100%";
+            note.style.fontSize = Math.random() * 12 + 16 + "px";
+            document.body.appendChild(note);
+
+            setTimeout(() => {
+              note.remove();
+            }, 5000);
+          }
+        }, 1500);
+      }
+
+      // Animation Observer
+      function setupScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animated");
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+          observer.observe(el);
+        });
+      }
+
+      // Curtain reveal function
+      function reveal() {
+        const leftCurtain = document.querySelector(".rnInner");
+        const rightCurtain = document.querySelector(".rnInnerRight");
+
+        if (leftCurtain) leftCurtain.classList.add("open");
+        if (rightCurtain) rightCurtain.classList.add("open");
+
+        setTimeout(() => {
+          const curtain = document.querySelector("#curtain");
+          if (curtain) curtain.classList.add("d-none");
+
+          const mainContent = document.getElementById("mainContent");
+          if (mainContent) {
+            mainContent.style.display = "block";
+            mainContent.classList.add("fade-in-content");
+          }
+          startAnimations();
+          initAudioOnInteraction();
+        }, 4000);
+      }
+
+      // Snow effect function
+      function snow(event) {
+        console.log("Snow effect triggered", event.target);
+
+        const duration = 60 * 1000;
+        const animationEnd = Date.now() + duration;
+        let skew = 1;
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        (function frame() {
+          const timeLeft = animationEnd - Date.now();
+          const ticks = Math.max(200, 500 * (timeLeft / duration));
+
+          skew = Math.max(0.8, skew - 0.001);
+
+          confetti({
+            particleCount: 1,
+            startVelocity: 0,
+            ticks: ticks,
+            origin: {
+              x: Math.random(),
+              y: Math.random() * skew - 0.2,
+            },
+            colors: ["#af3d5f", "#e22016"],
+            shapes: ["circle"],
+            gravity: randomInRange(0.4, 0.6),
+            scalar: randomInRange(0.4, 1),
+            drift: randomInRange(-0.4, 0.4),
+          });
+
+          if (timeLeft > 0) {
+            requestAnimationFrame(frame);
+          }
+        })();
+      }
+
+      // Event Listeners
+      document.addEventListener("keydown", function (e) {
+        const curtain = document.querySelector("#curtain");
+        if (e.code === "Space" || e.key === "Enter") {
+          if (curtain && curtain.style.display !== "none" && !curtain.classList.contains("d-none")) {
+            reveal();
+            snow(e);
+          }
+        }
+      });
+
+      // Curtain click listener
+      document.getElementById("curtain").addEventListener("click", function (event) {
+        if (this.style.display !== "none" && !this.classList.contains("d-none")) {
+          reveal();
+          snow(event);
+        }
+      });
+
+      // Touch support for mobile
+      let touchStartY = 0;
+      document.addEventListener("touchstart", function (event) {
+        touchStartY = event.touches[0].clientY;
+      });
+
+      document.addEventListener("touchend", function (event) {
+        const touchEndY = event.changedTouches[0].clientY;
+        const curtain = document.querySelector("#curtain");
+
+        if (
+          Math.abs(touchStartY - touchEndY) > 50 &&
+          curtain &&
+          curtain.style.display !== "none" &&
+          !curtain.classList.contains("d-none")
+        ) {
+          reveal();
+          snow(event);
+        }
+      });
+
+      // Handle visibility change for audio
+      document.addEventListener("visibilitychange", function () {
+        if (audio && isPlaying) {
+          if (document.hidden) {
+            audio.pause();
+          } else {
+            audio.play().catch(console.log);
+          }
+        }
+      });
+
+      // Initialize audio on DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", () => {
+        audio = document.getElementById("backgroundMusic");
+      });
+
+      // Console messages
+      console.log(
+        "%cMÅ BRA MED LJUD 🎵",
+        "color: #ffd700; font-weight: bold; font-size: 24px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);"
+      );
+      console.log(
+        "%cVälkommen till eventet!",
+        "color: #E91E63; font-style: italic; font-size: 14px;"
+      );
+    </script>
+  </body>
+</html>
