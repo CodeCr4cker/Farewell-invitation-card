@@ -5,7 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>Golden Days of Our Batch</title>
-    <meta name="description" content="Ending with Beautiful Beginnings">
+        <meta name="description" content="Ending with Beautiful Beginnings">
+         <meta name="description" content="
+           This farewell website has been beautifully designed By Divyanshu Pandey to honor 
+           and Celebrate the journey of all students of Class 12th As we say goodbye to this 
+           wonderful chapter,let's celebrate the moments that made out time together unforgettable!"> 
+         <meta name="description" content="">
+    
+    <meta property="og:image" content="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/favicon.jpg">
+<!--<meta property="og:url" content="https://farewell2025.netlify.app"> -->
+<meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -28,85 +37,34 @@
             min-height: 100vh;
         }
 
-         /* Countdown */
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
 
-        .countdown-item {
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+         .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #0a0e27
             border-radius: 15px;
-            padding: 2rem 1rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0a0e27 0%, #141b2d 100%);
+            color: white;
+            padding: 30px;
             text-align: center;
         }
 
-        .countdown-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            display: block;
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
         }
 
-        .countdown-label {
-            color: var(--text-muted);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-gold), #b8941f);
-            color: var(--primary-dark);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-
-        /* COMMENT BOX SECTION */
-        .comments-section {
-            background: linear-gradient(135deg, rgba(20, 27, 45, 0.8), rgba(10, 14, 39, 0.9));
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin: 3rem auto;
-            max-width: 1200px;
-        }
-
-        .comments-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .comments-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .comments-stats {
+        .stats-bar {
             display: flex;
             justify-content: center;
             gap: 30px;
             margin-top: 15px;
             font-size: 0.9em;
-            color: var(--text-muted);
         }
 
         .stat-item {
@@ -115,15 +73,19 @@
             gap: 5px;
         }
 
+        .comment-section {
+            padding: 30px;
+            border-bottom: 2px solid #141b2d;
+        }
+
         .user-info-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(139, 92, 246, 0.1);
+            background: #141b2d;
             padding: 15px 20px;
-            border-radius: 15px;
+            border-radius: 10px;
             margin-bottom: 20px;
-            border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         .user-details {
@@ -133,113 +95,266 @@
         }
 
         .user-avatar {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-gold), #b8941f);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-dark);
-            font-size: 20px;
+            color: rgb(15, 12, 54);
+            font-size: 18px;
             font-weight: bold;
         }
 
         .user-name {
             font-weight: 600;
-            color: var(--accent-gold);
-            font-size: 1.1rem;
+            color: #333;
         }
 
-        .btn-logout {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            padding: 10px 25px;
+        .btn {
+            padding: 12px 30px;
             border: none;
             border-radius: 25px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-logout:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+            transition: all 0.3s ease;
         }
 
         .btn-comment {
-            background: linear-gradient(135deg, var(--accent-gold), #b8941f);
-            color: var(--primary-dark);
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+            background: #667eea;
+            color: white;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
 
         .btn-comment:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .filter-bar {
-            display: flex;
-            gap: 10px;
-            margin: 20px 0;
-            flex-wrap: wrap;
+        .btn-comment:active {
+            transform: translateY(0);
         }
 
-        .filter-btn {
-            padding: 10px 25px;
-            background: rgba(139, 92, 246, 0.1);
-            border: 2px solid rgba(139, 92, 246, 0.3);
-            color: var(--accent-purple);
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active {
-            background: var(--accent-purple);
+        .btn-logout {
+            background: #ff4757;
             color: white;
-        }
-
-        .search-box {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            border-radius: 25px;
+            padding: 10px 25px;
             font-size: 14px;
-            color: var(--text-light);
         }
 
-        .search-input::placeholder {
-            color: var(--text-muted);
+        .btn-logout:hover {
+            background: #ee3344;
+        }
+
+        .btn-submit {
+            background: #667eea;
+            color: white;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn-submit:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-cancel {
+            background: #95a5a6;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+
+        .btn-register {
+            background: #2ecc71;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-register:hover {
+            background: #27ae60;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 450px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s ease;
+        }
+
+        .comment-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .char-counter {
+            text-align: right;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .char-counter.warning {
+            color: #ff4757;
+        }
+
+        .error-message, .success-message {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error-message {
+            background: #ffe0e0;
+            color: #d32f2f;
+            border-left: 4px solid #d32f2f;
+        }
+
+        .success-message {
+            background: #e0ffe0;
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .error-message.show, .success-message.show {
+            display: block;
+        }
+
+        .comments-list {
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .comment-item {
-            background: rgba(139, 92, 246, 0.05);
+            background: #141b2d;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 10px;
             margin-bottom: 15px;
-            border-left: 4px solid var(--accent-gold);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-left: 4px solid #272c41;
+            animation: slideIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .comment-header {
@@ -253,55 +368,57 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-gold), #b8941f);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-dark);
+            color: rgb(255, 255, 255);
             font-weight: bold;
         }
 
+        input{
+            background-color: #141b2d;
+        }
         .comment-author {
             font-weight: 600;
-            color: var(--accent-gold);
+            color: #667eea;
         }
 
         .comment-time {
-            color: var(--text-muted);
+            color: #999;
             font-size: 0.9em;
             margin-left: auto;
         }
 
         .comment-text {
-            color: var(--text-light);
+            color: #333;
             line-height: 1.6;
             margin-left: 50px;
+            word-wrap: break-word;
+            margin-bottom: 10px;
         }
 
         .comment-actions {
             display: flex;
             gap: 15px;
             margin-left: 50px;
-            margin-top: 10px;
+            align-items: center;
         }
 
         .action-btn {
             background: none;
             border: none;
-            color: var(--text-muted);
+            color: #999;
             cursor: pointer;
             font-size: 0.9em;
             display: flex;
             align-items: center;
             gap: 5px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: all 0.3s;
+            transition: color 0.3s;
         }
 
         .action-btn:hover {
-            color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.1);
+            color: #667eea;
         }
 
         .action-btn.liked {
@@ -310,15 +427,42 @@
 
         .no-comments {
             text-align: center;
-            color: var(--text-muted);
+            color: #999;
             padding: 40px;
             font-style: italic;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
         }
 
         .hide {
             display: none;
         }
 
+        .tab-switch {
+            text-align: center;
+            margin-top: 15px;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .tab-switch:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .user-info-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+
+        
 
         /* Book Animation - Updated Colors */
         .book-container {
@@ -525,7 +669,7 @@
 
         .nav-arrows {
             position: fixed;
-            bottom: 2rem;
+            top: 35rem;
             left: 50%;
             transform: translateX(-50%);
             display: none;
@@ -1567,6 +1711,40 @@
                 font-size: 20px;
             }
         }
+
+        /* Simple styles for search and filter (comments) */
+        .comments-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: #fff;
+            border-color: #667eea;
+        }
     </style>
 </head>
 <body>
@@ -1669,25 +1847,6 @@
                     <div class="back">
                         <div class="text-content">
                             <h2> Welcome </h2>
-                            <!-- <div class="instructions">
-                                <h3>Navigation:</h3>
-                                <ul>
-                                    <li>🖱️ <strong>Click on any page</strong> to flip forward or backward</li>
-                                    <li>⬅️➡️ Use <strong>arrow buttons</strong> at the bottom</li>
-                                    <li>⌨️ Use <strong>keyboard arrows</strong> (← →)</li>
-                                </ul>
-                                <h3>Videos:</h3>
-                                <ul>
-                                    <li>▶️ <strong>Click the play button</strong> on each video page to start</li>
-                                    <li>🎬 Videos pause automatically when you flip away</li>
-                                    <li>📱 Full-screen videos for best experience</li>
-                                </ul>
-                                <h3>Auto-Close:</h3>
-                                <ul>
-                                    <li>📖 Book closes automatically at the last page</li>
-                                    <li>🔄 Resets to beginning after closing</li>
-                                </ul>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -1893,13 +2052,13 @@
                         <div class="cover-subtitle">Thank You for Watching</div>
                     </div>
                 </div>
-                
-            </div>
-
-            <div class="nav-arrows">
+                 
+            </div>  <div class="nav-arrows">
                 <button class="arrow-btn" id="prevBtn" disabled>◀</button>
                 <button class="arrow-btn" id="nextBtn">▶</button>
             </div>
+
+         
         </section>
 
         <!-- Gallery Section -->
@@ -1913,10 +2072,10 @@
 
             <!-- Gallery Navigation -->
             <div class="gallery-nav">
-                <button class="gallery-nav-btn active" onclick="switchGalleryTab('memories')">
+                <button class="gallery-nav-btn active" data-tab="memories" onclick="switchGalleryTab('memories', event)">
                     <i class="fas fa-images"></i> Old Memories
                 </button>
-                <button class="gallery-nav-btn" onclick="switchGalleryTab('farewell')">
+                <button class="gallery-nav-btn" data-tab="farewell" onclick="switchGalleryTab('farewell', event)">
                     <i class="fas fa-video"></i> Farewell Day
                 </button>
             </div>
@@ -1949,93 +2108,99 @@
         </section>
 
 
-          <!-- Comments Section -->
-        <section class="comments-section" id="comments">
-            <div class="comments-header">
-                <h2>💬 Share Your Thoughts</h2>
-                <p style="color: var(--text-muted);">Leave your farewell messages and memories</p>
-                <div class="comments-stats">
-                    <div class="stat-item">
-                        <span>💬</span>
-                        <span id="totalComments">0</span>
-                        <span>Comments</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>👥</span>
-                        <span id="totalUsers">0</span>
-                        <span>Contributors</span>
-                    </div>
+
+
+
+         <div class="container">
+        <div class="header">
+            <h1>💬 Rospesnse Box</h1>
+            <p>Share your thoughts with the community</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span>💬</span>
+                    <span id="totalComments">0</span>
+                    <span>Comments</span>
+                </div>
+                <div class="stat-item">
+                    <span>👥</span>
+                    <span id="totalUsers">0</span>
+                    <span>Contributors</span>
                 </div>
             </div>
+        </div>
 
+        <div class="comment-section">
             <div id="userInfoSection" class="hide">
                 <div class="user-info-bar">
                     <div class="user-details">
                         <div class="user-avatar" id="userAvatar"></div>
                         <span class="user-name" id="userName"></span>
                     </div>
-                    <button class="btn-logout" id="logoutBtn">Logout</button>
+                    <button class="btn btn-logout" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+            <button class="btn btn-comment" id="commentBtn">💬 Add your Response</button>
+        </div>
+
+        <div class="comments-list">
+            <div class="section-title">
+                <span>All Thought</span>
+                <span id="commentsInfo" style="font-size:0.9em;color:#666;"></span>
+            </div>
+
+            <!-- Search and Filter controls (added to avoid JS errors and to provide UI) -->
+            <div class="comments-controls" style="padding: 0 30px; margin-top: 12px;">
+                <input id="searchInput" class="form-input search-input" placeholder="Search comments by text or author...">
+                <div id="filterBar" class="filter-bar" role="tablist" aria-label="Filter comments">
+                    <button class="filter-btn active" data-filter="newest">Newest</button>
+                    <button class="filter-btn" data-filter="oldest">Oldest</button>
+                    <button class="filter-btn" data-filter="popular">Popular</button>
                 </div>
             </div>
 
-            <button class="btn-comment" id="commentBtn">
-                <i class="fas fa-comment-dots"></i> Add Your Comment
-            </button>
-
-            <div class="filter-bar" id="filterBar">
-                <button class="filter-btn active" data-filter="newest">🕐 Newest</button>
-                <button class="filter-btn" data-filter="oldest">📅 Oldest</button>
-                <button class="filter-btn" data-filter="popular">🔥 Popular</button>
-                <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search comments...">
-                </div>
+            <div id="commentsList" style="padding: 0 30px;">
+                <div class="loading">Loading comments...</div>
             </div>
-
-            <div class="comments-list" id="commentsList">
-                <div class="no-comments">No comments yet. Be the first to share!</div>
-            </div>
-        </section>
-
+        </div>
+    </div>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="modal">
+    <div id="loginModal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeLoginModal()"><i class="fas fa-times"></i></button>
             <h2 class="modal-title">🔐 Login to Comment</h2>
             <div class="form-group">
-                <label>Email</label>
+                <label for="emailInput">Email</label>
                 <input type="email" id="emailInput" class="form-input" placeholder="Enter your email">
             </div>
             <div class="form-group">
-                <label>Password</label>
+                <label for="passwordInput">Password</label>
                 <input type="password" id="passwordInput" class="form-input" placeholder="Enter your password">
             </div>
-            <button class="btn-submit" id="loginBtn">Login</button>
-            <button class="btn-register" id="showRegisterBtn">Create New Account</button>
-            <button class="btn-cancel" id="cancelLoginBtn">Cancel</button>
+            <button class="btn btn-submit" id="loginBtn">Login</button>
+            <button class="btn btn-register" id="showRegisterBtn">Create New Account</button>
+            <button class="btn btn-cancel" id="cancelLoginBtn">Cancel</button>
             <div id="loginError" class="error-message"></div>
         </div>
     </div>
 
     <!-- Register Modal -->
-    <div id="registerModal" class="modal">
+    <div id="registerModal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeRegisterModal()"><i class="fas fa-times"></i></button>
             <h2 class="modal-title">📝 Create Account</h2>
             <div class="form-group">
-                <label>Email</label>
+                <label for="regEmailInput">Email</label>
                 <input type="email" id="regEmailInput" class="form-input" placeholder="Enter your email">
             </div>
             <div class="form-group">
-                <label>Password</label>
+                <label for="regPasswordInput">Password</label>
                 <input type="password" id="regPasswordInput" class="form-input" placeholder="Minimum 6 characters">
             </div>
             <div class="form-group">
-                <label>Confirm Password</label>
+                <label for="regConfirmPasswordInput">Confirm Password</label>
                 <input type="password" id="regConfirmPasswordInput" class="form-input" placeholder="Re-enter password">
             </div>
-            <button class="btn-submit" id="registerBtn">Create Account</button>
-            <button class="btn-cancel" id="cancelRegisterBtn">Cancel</button>
+            <button class="btn btn-submit" id="registerBtn">Create Account</button>
+            <button class="btn btn-cancel" id="cancelRegisterBtn">Cancel</button>
             <div id="registerError" class="error-message"></div>
             <div id="registerSuccess" class="success-message"></div>
             <div class="tab-switch" id="backToLoginBtn">Already have an account? Login</div>
@@ -2043,10 +2208,9 @@
     </div>
 
     <!-- Comment Modal -->
-    <div id="commentModal" class="modal">
+    <div id="commentModal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeCommentModal()"><i class="fas fa-times"></i></button>
-            <h2 class="modal-title">✍️ Write Your Comment</h2>
+            <h2 class="modal-title">✏️ Write Your Thought</h2>
             <textarea 
                 class="comment-textarea" 
                 id="commentInput" 
@@ -2054,8 +2218,8 @@
                 maxlength="500"
             ></textarea>
             <div class="char-counter" id="charCounter">0 / 500</div>
-            <button class="btn-submit" id="submitCommentBtn">Post Comment</button>
-            <button class="btn-cancel" id="cancelCommentBtn">Cancel</button>
+            <button class="btn btn-submit" id="submitCommentBtn">Post Comment</button>
+            <button class="btn btn-cancel" id="cancelCommentBtn">Cancel</button>
             <div id="commentError" class="error-message"></div>
         </div>
     </div>
@@ -2156,13 +2320,12 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-
-            // Firebase configuration
+       // Firebase configuration
         const firebaseConfig = {
   apiKey: "AIzaSyDr_reHnwMBlZ8HnhT-Ae9Rl4wwvOG2nuk",
   authDomain: "chat-67712.firebaseapp.com",
@@ -2210,11 +2373,13 @@
         const userAvatar = document.getElementById('userAvatar');
         const userName = document.getElementById('userName');
         const logoutBtn = document.getElementById('logoutBtn');
-        const searchInput = document.getElementById('searchInput');
         const totalComments = document.getElementById('totalComments');
         const totalUsers = document.getElementById('totalUsers');
-        const filterBar = document.getElementById('filterBar');
         const commentsInfo = document.getElementById('commentsInfo');
+
+        // New: optional search and filter elements (may be null in other copies)
+        const searchInput = document.getElementById('searchInput');
+        const filterBar = document.getElementById('filterBar');
 
         let currentUser = null;
         let allComments = [];
@@ -2359,7 +2524,7 @@
         commentInput.oninput = updateCharCounter;
 
         function updateCharCounter() {
-            const length = commentInput.value.length;
+            const length = (commentInput.value || '').length;
             charCounter.textContent = `${length} / 500`;
             if (length > 450) {
                 charCounter.classList.add('warning');
@@ -2476,7 +2641,7 @@
 
         // Submit/Update comment (use auth.currentUser fallback)
         submitCommentBtn.onclick = async function() {
-            const commentText = commentInput.value.trim();
+            const commentText = (commentInput.value || '').trim();
             
             if (!commentText) {
                 showError(commentError, 'Please write a comment');
@@ -2637,21 +2802,25 @@
             commentsList.innerHTML = `<div class="error-message show">Failed to load comments: ${escapeHtml(error.message || error)}</div>`;
         });
 
-        // Search/filter handling
-        searchInput.addEventListener('input', (e) => {
-            currentSearchTerm = e.target.value.trim().toLowerCase();
-            renderComments();
-        });
+        // Search/filter handling (guard for null)
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearchTerm = e.target.value.trim().toLowerCase();
+                renderComments();
+            });
+        }
 
-        // Filter buttons
-        filterBar.addEventListener('click', (e) => {
-            const btn = e.target.closest('.filter-btn');
-            if (!btn) return;
-            [...filterBar.querySelectorAll('.filter-btn')].forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter || 'newest';
-            renderComments();
-        });
+        // Filter buttons handling (guard for null)
+        if (filterBar) {
+            filterBar.addEventListener('click', (e) => {
+                const btn = e.target.closest('.filter-btn');
+                if (!btn) return;
+                [...filterBar.querySelectorAll('.filter-btn')].forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter || 'newest';
+                renderComments();
+            });
+        }
 
         // Helper: escape HTML
         function escapeHtml(str) {
@@ -2741,6 +2910,7 @@
 
 
 
+        
         // ========== CONFIGURATION SECTION ==========
         
         const GALLERY_CODE = '12BL25';
@@ -2988,9 +3158,10 @@
         // ========== VIDEO BOOK FUNCTIONS ==========
         
         function initVideoBook() {
+            if (!book) return;
             book.style.setProperty("--c", 0);
             allVideos = Array.from(book.querySelectorAll("video"));
-            totalPages = book.querySelectorAll(".page").length;
+            totalPages = book.querySelectorAll(".page").length - 1; // treat last special as "end"
             
             book.querySelectorAll(".page").forEach((page, idx) => {
                 page.style.setProperty("--i", idx);
@@ -3011,7 +3182,9 @@
                     e.stopPropagation();
                     const video = overlay.previousElementSibling;
                     if (video && video.tagName === 'VIDEO') {
-                        openVideoModal(video.querySelector('source').src);
+                        const srcEl = video.querySelector('source');
+                        const src = srcEl ? srcEl.src : video.src;
+                        openVideoModal(src);
                     }
                 });
             });
@@ -3022,13 +3195,16 @@
             });
 
             // Navigation buttons
-            prevBtn.addEventListener('click', () => {
-                if (currentPage > 0) goToPage(currentPage - 1);
-            });
-
-            nextBtn.addEventListener('click', () => {
-                if (currentPage < totalPages) goToPage(currentPage + 1);
-            });
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentPage > 0) goToPage(currentPage - 1);
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (currentPage < totalPages + 1) goToPage(currentPage + 1);
+                });
+            }
 
             // Show nav arrows when book section is in view
             observeBookSection();
@@ -3048,7 +3224,7 @@
                 });
             }, { threshold: 0.3 });
             
-            observer.observe(bookSection);
+            if (bookSection) observer.observe(bookSection);
         }
 
         function openVideoModal(videoSrc) {
@@ -3120,25 +3296,25 @@
         }
 
         function goToPage(pageNum) {
-            if (pageNum < 0 || pageNum > totalPages) return;
+            if (pageNum < 0) return;
             
             currentPage = pageNum;
             book.style.setProperty("--c", currentPage);
             
-            prevBtn.disabled = currentPage === 0;
-            nextBtn.disabled = currentPage === totalPages;
+            if (prevBtn) prevBtn.disabled = currentPage === 0;
+            if (nextBtn) nextBtn.disabled = currentPage === totalPages + 1;
             
             handleVideoPlayback(currentPage);
             
-            if (currentPage === totalPages) {
+            if (currentPage === totalPages + 1) {
                 setTimeout(() => {
                     book.classList.add('closed');
                     setTimeout(() => {
                         currentPage = 0;
                         book.style.setProperty("--c", 0);
                         book.classList.remove('closed');
-                        prevBtn.disabled = true;
-                        nextBtn.disabled = false;
+                        if (prevBtn) prevBtn.disabled = true;
+                        if (nextBtn) nextBtn.disabled = false;
                         handleVideoPlayback(0);
                     }, 2000);
                 }, 1000);
@@ -3172,8 +3348,8 @@
             if (!lightbox.classList.contains('active') && 
                 !galleryModal.classList.contains('active') && 
                 !invitationModal.classList.contains('active')) {
-                if (e.key === 'ArrowRight') nextBtn.click();
-                else if (e.key === 'ArrowLeft') prevBtn.click();
+                if (e.key === 'ArrowRight') nextBtn && nextBtn.click();
+                else if (e.key === 'ArrowLeft') prevBtn && prevBtn.click();
             }
             
             if (lightbox.classList.contains('active') && e.key === 'Escape') closeLightbox();
@@ -3240,11 +3416,19 @@
             document.getElementById('closeGalleryBtn').classList.remove('visible');
         }
 
-        function switchGalleryTab(tab) {
+        // Updated: accept event parameter to avoid "event is not defined"
+        function switchGalleryTab(tab, evt) {
             currentTab = tab;
             
+            // Manage active states for nav buttons
             document.querySelectorAll('.gallery-nav-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.closest('.gallery-nav-btn').classList.add('active');
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            } else {
+                // fallback: activate by data-tab
+                const btn = document.querySelector(`.gallery-nav-btn[data-tab="${tab}"]`);
+                if (btn) btn.classList.add('active');
+            }
             
             document.querySelectorAll('.gallery-tab').forEach(tabEl => tabEl.classList.remove('active'));
             
@@ -3283,11 +3467,14 @@
         function closeGalleryModal() {
             document.getElementById('galleryModal').classList.remove('active');
             document.getElementById('galleryCode').value = '';
-            document.getElementById('galleryError').style.display = 'none';
+            const err = document.getElementById('galleryError');
+            if (err) err.style.display = 'none';
         }
 
         function verifyGalleryCode() {
-            const code = document.getElementById('galleryCode').value.trim().toUpperCase();
+            const codeEl = document.getElementById('galleryCode');
+            if (!codeEl) return;
+            const code = codeEl.value.trim().toUpperCase();
             const errorMsg = document.getElementById('galleryError');
             
             if (code === GALLERY_CODE) {
@@ -3296,10 +3483,10 @@
                 unlockGallery();
                 showSuccessNotification('Gallery Unlocked Successfully!');
             } else {
-                errorMsg.style.display = 'block';
-                document.getElementById('galleryCode').value = '';
+                if (errorMsg) errorMsg.style.display = 'block';
+                codeEl.value = '';
                 setTimeout(() => {
-                    errorMsg.style.display = 'none';
+                    if (errorMsg) errorMsg.style.display = 'none';
                 }, 3000);
             }
         }
@@ -3372,6 +3559,7 @@
         }
 
         function switchAudioToGallery() {
+            if (!mainAudio || !galleryAudio) return;
             let mainVolume = mainAudio.volume;
             const fadeOutMain = setInterval(() => {
                 if (mainVolume > 0.05) {
@@ -3390,6 +3578,7 @@
         }
 
         function switchAudioToMain() {
+            if (!mainAudio || !galleryAudio) return;
             let galleryVolume = galleryAudio.volume;
             const fadeOutGallery = setInterval(() => {
                 if (galleryVolume > 0.05) {
@@ -3467,7 +3656,8 @@
             document.getElementById('personalInvitationModal').classList.remove('active');
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
-            document.getElementById('invitationError').style.display = 'none';
+            const err = document.getElementById('invitationError');
+            if (err) err.style.display = 'none';
         }
 
         function generatePersonalInvitation() {
@@ -3478,9 +3668,9 @@
             const user = userDatabase[username];
             
             if (!user || user.password !== password) {
-                errorMsg.style.display = 'block';
+                if (errorMsg) errorMsg.style.display = 'block';
                 setTimeout(() => {
-                    errorMsg.style.display = 'none';
+                    if (errorMsg) errorMsg.style.display = 'none';
                 }, 3000);
                 return;
             }
@@ -3512,9 +3702,12 @@
         }
 
         // Gallery Code Input Formatter
-        document.getElementById('galleryCode').addEventListener('input', function(e) {
-            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-        });
+        const galleryCodeEl = document.getElementById('galleryCode');
+        if (galleryCodeEl) {
+            galleryCodeEl.addEventListener('input', function(e) {
+                this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+            });
+        }
 
         // Smooth Scroll for Navigation Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -3560,5 +3753,5 @@
         console.log('%cAccess Code: 12BL25', 'color: #4ecdc4; font-size: 16px;');
         console.log('%cMade with ❤️ by Divyanshu Pandey', 'color: #8b5cf6; font-size: 14px;');
     </script>
-    </body>
-    </html>
+</body>
+</html>
