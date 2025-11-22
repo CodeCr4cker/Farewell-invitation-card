@@ -38,6 +38,173 @@
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: linear-gradient(135deg, #1e1e28, #0f0f17);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #ef4444;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1);
+        }
+
+        .modal-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 3px;
+            margin: 1rem 0;
+        }
+
+        .modal-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .error {
+            color: #ef4444;
+            text-align: center;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+            background: #1a1a2e;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            pointer-events: none;
+        }
+
+
          .container {
             max-width: 900px;
             margin: 0 auto;
