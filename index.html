@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/favicon.jpg" type="image/jpg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Golden Days of Our Batch</title>
+    <meta name="description" content="Ending with Beautiful Beginnings">
+    <meta name="description" content="This farewell website has been beautifully designed By Divyanshu Pandey to honor and Celebrate the journey of all students of Class 12th As we say goodbye to this wonderful chapter,let's celebrate the moments that made our time together unforgettable!">
+    <meta property="og:image" content="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/favicon.jpg">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-animation">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-center"><i class="fas fa-heart"></i></div>
+            </div>
+            <div class="loader-text">Loading Your Memories...</div>
+        </div>
+    </div>
+
+    <!-- Curtain -->
+    <div class="curtain-container visible" id="curtain">
+        <div class="curtain-left"></div>
+        <div class="curtain-right"></div>
+        <div class="curtain-instruction">
+            <i class="fas fa-hand-pointer"></i> Click anywhere to enter
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="mainAudio" loop preload="auto" playsinline>
+        <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/audio/farewell.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="galleryAudio" loop preload="auto" playsinline>
+        <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/audio/song.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="tripAudio" loop preload="auto" playsinline>
+        <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/audio/trip.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Close Gallery Button -->
+    <button class="close-gallery-btn" id="closeGalleryBtn">
+        <i class="fas fa-times"></i> Close Gallery
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Particles -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Navigation -->
+        <nav class="nav-bar" id="navBar">
+            <div class="nav-content">
+                <div class="nav-logo">Farewell 2025</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#videobook">Video Book</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">Farewell 2025</h1>
+                <p class="hero-subtitle">Celebration of Memories</p>
+
+                <div class="hero-details">
+                    <p>Join us for an unforgettable evening on</p>
+                    <p><span class="highlight">14 December 2025</span></p>
+                    <p>at <span class="highlight">Dalchini Restaurant</span>, ADA, Naini, Prayagraj</p>
+                    <p style="margin-top: 1rem; font-style: italic;">Dinner & Dancing to Follow</p>
+                    <p style="margin-top: 1rem; font-style: italic;">Time:- 01:30 PM TO 05:30 PM</p>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Organized by Class 12th, Session 2025-26, BL Academy
+                    </p>
+                </div>
+
+                <div id="countdownContainer">
+                    <div class="countdown-grid" id="countdown"></div>
+                </div>
+
+                <!-- <div style="margin-top: 2rem;">
+                    <button class="btn-primary" onclick="openPersonalInvitationModal()">
+                        <i class="fas fa-id-card"></i> Personal Invitation
+                    </button>
+                    <a href="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/Invitation-card/invitation.jpg" class="btn-primary" download>
+                        <i class="fas fa-download"></i> Download Invitation
+                    </a>
+                    <a href="https://goo.gl/maps/5z5xX2hTYzU8VGEJ9" target="_blank" class="btn-primary btn-secondary">
+                        <i class="fas fa-map-marker-alt"></i> View Venue
+                    </a>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Video Book Section -->
+        <section id="videobook" class="book-container">
+            <div class="book">
+                <!-- Page 0 - Front Cover -->
+                <div class="page">
+                    <div class="front cover">
+                        <div class="cover-title">📖 My Video Book</div>
+                        <div class="cover-subtitle">A Journey Through Memories</div>
+                    </div>
+                    <div class="back">
+                        <div class="text-content">
+                            <h2> Welcome </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pages with Videos (full set) -->
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(1).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(2).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(3).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(4).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(5).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(6).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(7).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(8).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(9).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(10).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(11).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(12).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(13).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(14).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(15).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(16).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="front">
+                        <div class="video-container">
+                            <video controlslist="nodownload" disablepictureinpicture>
+                                <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/video/B%20L%20Academy(17).mp4" type="video/mp4">
+                            </video>
+                            <div class="play-overlay">
+                                <div class="play-icon">▶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back cover">
+                        <div class="cover-title">📖 The End</div>
+                        <div class="cover-subtitle">Thank You for Watching</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="nav-arrows">
+                <button class="arrow-btn" id="prevBtn" disabled>◀</button>
+                <button class="arrow-btn" id="nextBtn">▶</button>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section" id="gallery">
+            <div class="section-header">
+                <h2 class="section-title">Memory Gallery</h2>
+                <p class="section-description">A collection of our precious moments together</p>
+            </div>
+
+            <!-- Gallery Navigation -->
+            <div class="gallery-nav">
+                <button class="gallery-nav-btn active" data-tab="memories" onclick="switchGalleryTab('memories', event)">
+                    <i class="fas fa-images"></i> Old Memories
+                </button>
+                <button class="gallery-nav-btn" data-tab="farewell" onclick="switchGalleryTab('farewell', event)">
+                    <i class="fas fa-video"></i> Farewell photos
+                </button>
+                <button class="gallery-nav-btn trip-btn" data-tab="trip" onclick="switchGalleryTab('trip', event)">
+                    <i class="fas fa-mountain"></i> Trip Memories
+                </button>
+            </div>
+
+            <!-- Old Memories Tab -->
+            <div class="gallery-tab active" id="memoriesTab">
+                <div class="gallery-lock" id="memoriesLock">
+                    <div class="lock-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <button class="btn-primary" onclick="openMemoriesGallery()">
+                        <i class="fas fa-folder-open"></i> Open Album
+                    </button>
+                </div>
+                <div class="memories-gallery" id="memoriesGrid"></div>
+            </div>
+
+            <!-- Farewell Gallery Tab -->
+            <div class="gallery-tab" id="farewellTab">
+                <div class="gallery-lock" id="galleryLock">
+                    <div class="lock-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <button class="btn-primary" onclick="openGalleryModal()">
+                        <i class="fas fa-key"></i> Enter Access Code
+                    </button>
+                </div>
+                <div class="farewell-gallery" id="farewellGrid" style="display: none;"></div>
+            </div>
+
+            <!-- Trip Tab container (outside to avoid nested closing issues) -->
+        </section>
+
+        <!-- Trip Gallery block -->
+        <div class="gallery-tab" id="tripTab">
+            <div class="gallery-lock trip-lock" id="tripLock">
+                <div class="lock-icon trip-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <div class="lock-message">
+                    <br>
+                    <small style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; display: block;">
+                        Enter the date of trip in format DD-MM-YYYY as a password
+                    </small>
+                </div>
+                <button class="btn-primary" onclick="openTripModal()">
+                    <i class="fas fa-unlock"></i> Enter Password
+                </button>
+            </div>
+            <div class="trip-gallery" id="tripGrid" style="display: none;"></div>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <button class="lightbox-close" onclick="closeLightbox()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div id="lightboxMedia"></div>
+            </div>
+        </div>
+
+        <!-- Comments / Response Box -->
+        <div class="container">
+            <div class="header">
+                <h1 class="section-title">💬 Response Box</h1>
+                <p>Share your thoughts with the community</p>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span>💬</span>
+                        <span id="totalComments">0</span>
+                        <span>Comments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>👥</span>
+                        <span id="totalUsers">0</span>
+                        <span>Contributors</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment-section">
+                <div id="userInfoSection" class="hide">
+                    <div class="user-info-bar">
+                        <div class="user-details">
+                            <div class="user-avatar" id="userAvatar"></div>
+                            <span class="user-name" id="userName"></span>
+                        </div>
+                        <button class="btn btn-logout" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+                <button class="btn btn-comment" id="commentBtn">💬 Add your Response</button>
+            </div>
+
+            <div class="comments-list">
+                <div class="section-title">
+                    <span>All Thought</span>
+                    <span id="commentsInfo" style="font-size:1rem;color:#666;"></span>
+                </div>
+
+                <div class="comments-controls" style="padding: 0 30px; margin-top: 12px;">
+                    <input id="searchInput" class="form-input search-input" placeholder="Search comments by text or author...">
+                    <div id="filterBar" class="filter-bar" role="tablist" aria-label="Filter comments">
+                        <button class="filter-btn active" data-filter="newest">Newest</button>
+                        <button class="filter-btn" data-filter="oldest">Oldest</button>
+                        <button class="filter-btn" data-filter="popular">Popular</button>
+                    </div>
+                </div>
+
+                <div id="commentsList" style="padding: 0 30px;">
+                    <div class="loading">Loading comments...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal-overlay">
+            <div class="modal-content">
+                <h2 class="modal-title">🔐 Login to Comment</h2>
+                <p class="Alart">No need to use Original email I'd</p>
+                <br>
+                <p class="Alart-1">Format :- yourname@gmail.com</p>
+                <div class="form-group">
+                    <label for="emailInput">Email</label>
+                    <input type="email" id="emailInput" class="form-input" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <input type="password" id="passwordInput" class="form-input" placeholder="Enter your password">
+                </div>
+                <button class="btn btn-submit" id="loginBtn">Login</button>
+                <button class="btn btn-register" id="showRegisterBtn">Create New Account</button>
+                <button class="btn btn-cancel" id="cancelLoginBtn">Cancel</button>
+                <div id="loginError" class="error-message"></div>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div id="registerModal" class="modal-overlay">
+            <div class="modal-content">
+                <h2 class="modal-title">📝 Create Account</h2>
+                <div class="form-group">
+                    <label for="regEmailInput">Email</label>
+                    <input type="email" id="regEmailInput" class="form-input" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="regPasswordInput">Password</label>
+                    <input type="password" id="regPasswordInput" class="form-input" placeholder="Minimum 6 characters">
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPasswordInput">Confirm Password</label>
+                    <input type="password" id="regConfirmPasswordInput" class="form-input" placeholder="Re-enter password">
+                </div>
+                <button class="btn btn-submit" id="registerBtn">Create Account</button>
+                <button class="btn btn-cancel" id="cancelRegisterBtn">Cancel</button>
+                <div id="registerError" class="error-message"></div>
+                <div id="registerSuccess" class="success-message"></div>
+                <div class="tab-switch" id="backToLoginBtn">Already have an account? Login</div>
+            </div>
+        </div>
+
+        <!-- Comment Modal -->
+        <div id="commentModal" class="modal-overlay">
+            <div class="modal-content">
+                <h2 class="modal-title">✏️ Write Your Thought</h2>
+                <textarea class="comment-textarea" id="commentInput" placeholder="Share your thoughts..." maxlength="500"></textarea>
+                <div class="char-counter" id="charCounter">0 / 500</div>
+                <button class="btn btn-submit" id="submitCommentBtn">Post Comment</button>
+                <button class="btn btn-cancel" id="cancelCommentBtn">Cancel</button>
+                <div id="commentError" class="error-message"></div>
+            </div>
+        </div>
+
+        <!-- Gallery Access Modal -->
+        <div class="modal" id="galleryModal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeGalleryModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title">🔒 Gallery Access</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Enter the 6-character access code
+                </p>
+                <input type="text" class="modal-input" id="galleryCode" placeholder="------" maxlength="6">
+                <div class="error-message" id="galleryError">Invalid access code. Please try again.</div>
+                <button class="btn-primary" style="width: 100%; margin-top: 1rem;" onclick="verifyGalleryCode()">
+                    <i class="fas fa-unlock"></i> Unlock Gallery
+                </button>
+            </div>
+        </div>
+
+        <!-- Trip Modal -->
+        <div class="modal" id="tripModal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeTripModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title trip-title-modal">🎒 Trip Memories Access</h2>
+                <input type="password" class="modal-input" id="tripPassword" placeholder="Enter password">
+                <div class="error-message" id="tripError">Incorrect password. Please try again.</div>
+                <button class="btn-primary" style="width: 100%; margin-top: 1rem;" onclick="verifyTripPassword()">
+                    <i class="fas fa-unlock"></i> Unlock Gallery
+                </button>
+            </div>
+        </div>
+
+        <!-- Personal Invitation Modal -->
+        <div class="modal" id="personalInvitationModal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closePersonalInvitationModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title">Personal Invitation</h2>
+                <input type="text" class="modal-input text-left" id="username" placeholder="Username">
+                <input type="password" class="modal-input text-left" id="password" placeholder="Password">
+                <div class="error-message" id="invitationError">Invalid credentials. Please try again.</div>
+                <button class="btn-primary" style="width: 100%; margin-top: 1rem;" onclick="generatePersonalInvitation()">
+                    <i class="fas fa-download"></i> Generate & Download
+                </button>
+            </div>
+        </div>
+
+        <!-- Video Modal for Book Videos -->
+        <div class="video-modal" id="videoModal">
+            <div class="video-modal-content">
+                <button class="video-modal-close" onclick="closeVideoModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <video id="modalVideo" controls controlslist="nodownload" disablepictureinpicture playsinline></video>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer" id="contact">
+            <p class="footer-text">Can't wait to make this farewell memorable with you!</p>
+            <p class="footer-text">Just a ping away for any queries: <a href="https://its-divyanshu.netlify.app/" class="footer-link">Contact Me</a></p>
+            <p class="footer-text" style="margin-top: 1rem;"><a href="https://softstorex.netlify.app/" class="footer-link">App available now.</a></p>
+            <p class="footer-text" style="margin-top: 1.5rem;">Join us in our happiness! 💫</p>
+            <p class="footer-text" style="margin-top: 1rem;">© Divyanshu Pandey</p>
+        </footer>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
