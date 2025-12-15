@@ -911,7 +911,7 @@
     const container = el('countdownContainer');
     if (!container) return;
     container.innerHTML = `
-      <div style="background: rgba(139, 92, 246, 0.15); border: 2px solid var(--accent-gold); border-radius: 20px; padding: 2rem; margin: 3rem 0;">
+      <div style="background: rgba(139, 92, 246, 0.15); border: 2px solid var(--accent-gold); border-radius: 20px; padding: 2rem; margin: 3rem 0; height:27rem; width:23rem">
          <img src=  "https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/Farewell/farewell%20(42).jpg" style="width:300px; height:200px;">
         <p style="font-size: 1.2rem; color: var(--text-light); margin: 0.5rem 0;">Hope you had an amazing time at the farewell!</p>
         <p style="margin-top: 1rem;">Thank you for being part of this incredible journey. May all your dreams come true! 💫</p>
