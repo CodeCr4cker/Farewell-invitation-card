@@ -912,7 +912,7 @@
     if (!container) return;
     container.innerHTML = `
       <div style="background: rgba(139, 92, 246, 0.15); border: 2px solid var(--accent-gold); border-radius: 20px; padding: 2rem; margin: 3rem 0;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 1rem;">🎉 The Big Day is Here! 🎉</h2>
+         <img src=  "https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/Farewell/farewell%20(42).jpg" style="width:500px; height:300px;">
         <p style="font-size: 1.2rem; color: var(--text-light); margin: 0.5rem 0;">Hope you had an amazing time at the farewell!</p>
         <p style="margin-top: 1rem;">Thank you for being part of this incredible journey. May all your dreams come true! 💫</p>
       </div>
